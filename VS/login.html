@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"  />
+
+  <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form>
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>o usa tu email para el registro</span>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="text" id="nombre" name="nombre" placeholder="First Name" required>
+        <input type="text" id="apellido" name="apellidos" placeholder="Last Name" required>
+        <button onclick="registrar()">Registro</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form>
+      <h1 id="inSes">Iniciar sesion</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>o inicia sesion con tu cuenta</span>
+      <input type="text" id="user" name="username" placeholder="Username" required>
+      <input type="password" id="pass" name="password" placeholder="Password" required>
+      <button class="btn btn-lg btn-primary btn-block" onclick="inicioSesion()">Iniciar sesion</button>
+    </form>
+  </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Bienvenido</h1>
+          <p>¿Ya tienes una cuenta? inicia sesion</p>
+          <button class="ghost" id="signIn">iniciar Sesion</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Bienvenido</h1>
+          <p>¿Aun no tienes cuenta?</p>
+          <button class="ghost" id="signUp">Registrate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/home.js"></script>
+  <script src="js/login.js"></script>
+</body>
+
+</html>
