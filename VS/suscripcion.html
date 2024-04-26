@@ -17,10 +17,14 @@
         </div>
         <div id="contenedor_planes">
             <div id="planes">
-                <h1>Basic</h1>
-                <b>10€/mes</b>
+                <div id="titPlan">
+                    <h1>Basic</h1>
+                    <b>10€/mes</b>
+                </div>
+                
                 <p>Acceso estándar a una selección limitada de películas y series a un precio asequible.</p>
-                <a onclick="verDetalles(this.nextElementSibling)">ver detalles</a>
+                <br>
+                <a onclick="verDetalles(this.nextElementSibling,this)" id="det">ver detalles</a>
                 <div id="detalles">
                     <ul>
                         <li>Acceso limitado a una selección de películas y series.</li>
@@ -31,14 +35,18 @@
                     </ul>
                 </div>
                 <br>
-                <button>Comprar</button>
+                <button class="bot">Comprar</button>
 
             </div>
             <div id="planes">
-                <h1>Premium</h1>
-                <b>15€/mes</b>
+                <div id="titPlan">
+                    <h1>Premium</h1>
+                    <b>15€/mes</b>
+                </div>
+                
                 <p>Acceso completo a todo el catálogo, incluyendo contenido exclusivo y estrenos, con calidad HD y la capacidad de ver en varios dispositivos.</p>
-                <a onclick="verDetalles(this.nextElementSibling)">ver detalles</a>
+                <br>
+                <a onclick="verDetalles(this.nextElementSibling,this)" id="det">ver detalles</a>
                 
                 <div id="detalles">
                     <ul>
@@ -50,14 +58,17 @@
                     </ul>
                 </div>
                 <br>
-                <button>Comprar</button>
+                <button class="bot">Comprar</button>
 
             </div>
             <div id="planes">
-                <h1>Vip</h1>
-                <b>20€/mes</b>
+                <div id="titPlan">
+                    <h1>Vip</h1>
+                    <b>20€/mes</b>
+                </div>
                 <p> Acceso exclusivo a todo, incluyendo estrenos y eventos especiales, con calidad UHD y HDR, además de beneficios adicionales.</p>
-                <a onclick="verDetalles(this.nextElementSibling)">ver detalles</a>
+                <br>
+                <a onclick="verDetalles(this.nextElementSibling, this)" id="det">ver detalles</a>
                 
                 <div id="detalles">
                     <ul>
@@ -71,7 +82,7 @@
                     </ul>
                 </div>
                 <br>
-                <button>Comprar</button>
+                <button class="bot">Comprar</button>
 
             </div>
         </div>
