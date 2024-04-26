@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>HBO</h1>
+        <div onclick="logo()" id="logo">SKYCINEMA</div>
     </header>
     <section>
         <div id="titulo_planes">
@@ -16,12 +16,67 @@
             <p>Selecciona el que mejor se adapte a ti</p>
         </div>
         <div id="contenedor_planes">
-            <div id="planes"></div>
-            <div id="planes"></div>
-            <div id="planes"></div>
+            <div id="planes">
+                <h1>Basic</h1>
+                <b>10€/mes</b>
+                <p>Acceso estándar a una selección limitada de películas y series a un precio asequible.</p>
+                <a onclick="verDetalles(this.nextElementSibling)">ver detalles</a>
+                <div id="detalles">
+                    <ul>
+                        <li>Acceso limitado a una selección de películas y series.</li>
+                        <li>Calidad de transmisión estándar.</li>
+                        <li>Sin acceso a contenido exclusivo o estrenos recientes.</li>
+                        <li>Precio asequible para usuarios que buscan una experiencia básica de entretenimiento.</li>
+
+                    </ul>
+                </div>
+                <br>
+                <button>Comprar</button>
+
+            </div>
+            <div id="planes">
+                <h1>Premium</h1>
+                <b>15€/mes</b>
+                <p>Acceso completo a todo el catálogo, incluyendo contenido exclusivo y estrenos, con calidad HD y la capacidad de ver en varios dispositivos.</p>
+                <a onclick="verDetalles(this.nextElementSibling)">ver detalles</a>
+                
+                <div id="detalles">
+                    <ul>
+                        <li>Acceso completo a todas las películas y series disponibles en la plataforma.</li>
+                        <li>Calidad de transmisión en alta definición (HD) y algunas en calidad 4K.</li>
+                        <li>Acceso a contenido exclusivo y estrenos recientes antes que los usuarios de otras suscripciones.</li>
+                        <li>Posibilidad de ver en múltiples dispositivos simultáneamente.</li>
+                        <li>Precio moderado para usuarios que desean más opciones y calidad.</li>
+                    </ul>
+                </div>
+                <br>
+                <button>Comprar</button>
+
+            </div>
+            <div id="planes">
+                <h1>Vip</h1>
+                <b>20€/mes</b>
+                <p> Acceso exclusivo a todo, incluyendo estrenos y eventos especiales, con calidad UHD y HDR, además de beneficios adicionales.</p>
+                <a onclick="verDetalles(this.nextElementSibling)">ver detalles</a>
+                
+                <div id="detalles">
+                    <ul>
+                        <li>Acceso privilegiado a todas las películas y series, incluyendo estrenos exclusivos y contenido premium.</li>
+                        <li>Calidad de transmisión en ultra alta definición (UHD) y HDR, para una experiencia de visualización inmersiva.</li>
+                        <li>Acceso a eventos especiales, como preestrenos de películas y eventos en vivo.</li>
+                        <li>Descuentos en merchandising relacionado con películas y series.</li>
+                        <li>Soporte prioritario al cliente.</li>
+                        <li>Precio premium para usuarios que buscan la máxima experiencia y exclusividad.</li>
+
+                    </ul>
+                </div>
+                <br>
+                <button>Comprar</button>
+
+            </div>
         </div>
     </section>
     <footer></footer>
-    <script src=""></script>
+    <script src="js/suscribcion.js"></script>
 </body>
 </html>
