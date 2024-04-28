@@ -1,4 +1,5 @@
 
+
 function irLog(){
     window.location = "login.html";
 }
@@ -7,6 +8,7 @@ function irLog(){
 function irReg(){
     window.location = "suscripcion.html";
 }
+
 
 
 
@@ -62,3 +64,9 @@ fetch(estrenos).then(res => res.json()).then(estreno =>{
 function foferta(){
     window.location = "suscripcion.html";
 }
+
+function cerrarSesion() {
+    sessionStorage.removeItem("username");
+    window.location.href = "home.html";
+
+ }

@@ -1,8 +1,9 @@
-package pelicula.model.entidades;
+package pelicula.model.dto;
+
+
 
 import java.io.Serializable;
 import jakarta.persistence.*;
-
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,16 +16,13 @@ import java.util.List;
  */
 @Entity
 @Table(name="usuarios")
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-public class Usuario implements Serializable {
+public class UsuarioDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String username;
 
 	private String apellidos;
-
-	
 
 	private String email;
 
@@ -37,14 +35,8 @@ public class Usuario implements Serializable {
 
 	private String password;
 
-	//bi-directional many-to-one association to Guardar
-	@OneToMany(mappedBy="usuario")
-	private List<Guardar> guardars;
 
-	//bi-directional many-to-many association to Perfile
-	
-
-	public Usuario() {
+	public UsuarioDto() {
 	}
 
 	public String getUsername() {
@@ -62,8 +54,6 @@ public class Usuario implements Serializable {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-
-	
 
 	public String getEmail() {
 		return this.email;
@@ -105,28 +95,40 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public List<Guardar> getGuardars() {
-		return this.guardars;
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
 
-	public void setGuardars(List<Guardar> guardars) {
-		this.guardars = guardars;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof UsuarioDto))
+			return false;
+		UsuarioDto other = (UsuarioDto) obj;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 
-	public Guardar addGuardar(Guardar guardar) {
-		getGuardars().add(guardar);
-		guardar.setUsuario(this);
-
-		return guardar;
+	@Override
+	public String toString() {
+		return "Usuario [username=" + username + ", apellidos=" + apellidos + ", email=" + email + ", enabled="
+				+ enabled + ", fecha_Registro=" + fecha_Registro + ", nombre=" + nombre + ", password=" + password
+				+ "]";
 	}
-
-	public Guardar removeGuardar(Guardar guardar) {
-		getGuardars().remove(guardar);
-		guardar.setUsuario(null);
-
-		return guardar;
-	}
-
+	
+	
+	
 	
 
 }

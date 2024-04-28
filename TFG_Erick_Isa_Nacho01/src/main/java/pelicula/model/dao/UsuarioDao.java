@@ -2,12 +2,12 @@ package pelicula.model.dao;
 
 import java.util.List;
 
-import pelicula.model.entidades.Usuario;
+import pelicula.model.dto.UsuarioDto;
+
+
 
 public interface UsuarioDao {
-	List<Usuario> findAll();
-	int insertOne(Usuario usuario);
-	Usuario buscarUnUserYpassword(String username, String password);
-	Usuario findByUser(String username);
-
+	UsuarioDto findByUsername(String username);
+	boolean registro(UsuarioDto usuario);
+	UsuarioDto insertOne(UsuarioDto usuario);
 }

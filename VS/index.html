@@ -14,9 +14,9 @@
         <h1 onclick="logo()">HBO</h1>
         <div id="log">
             <div id="search" onclick="fbuscar()"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <a onclick="irLog()" class="nav-link">Iniciar Sesion</a>
-            <hr>
-            <a onclick="irReg()" class="nav-link" id="btn_sub">SUSCRIBETE</a>
+            <a id="nombre" class="nav-link">Bienvenid@ <span id="nombreUser"></span> </a>
+            <hr> 
+            <a onclick="cerrarSesion()" class="nav-link" id="btn_sub">Cerrar Sesion</a>
         </div>
     </header>
     <section>
@@ -32,7 +32,10 @@
         <div id="pelicula"></div>
     </section>
     <footer></footer>
+    <script src="js/home.js"></script>
     <script src="js/index.js"></script>
+    
+    
 </body>
 
 </html>

@@ -13,15 +13,6 @@ function logo(){
     window.location = "index.html";
 }
 
-function irLog(){
-    window.location = "login.html";
-}
-
-function irReg(){
-    window.location = "suscripcion.html";
-}
-
-
 function fbuscar(){
     let buscar = document.getElementById("busqueda");
     buscar.style.display = "block";
@@ -167,5 +158,90 @@ function busq_nombre(){
         })
 
     })
+}
+
+let nombreUserspan=document.getElementById("nombreUser");
+
+
+function inicioSesion() {
+    let userInput = document.getElementById("user").value;
+    let passInput = document.getElementById("pass").value;
+    if (userInput.trim() === "" || passInput.trim() === "") {
+        alert("Por favor ingresa tu nombre de usuario y contraseña.");
+        return;
+    }
+    var datosInicioSesion = {
+        "username": userInput,
+        "password": passInput,
+    };
+    fetch("http://localhost:8084/usuarios/login", {
+        method: 'POST',
+        headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datosInicioSesion)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud de inicio de sesión.');
+        }
+        return response.json();
+    })
+    .then(usuario => {
+        console.log(usuario);
+        sessionStorage.setItem("username", usuario.username);
+        window.location.href = "index.html";
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+function obtenerUsername() {
+    let username = sessionStorage.getItem("username");
+    if (username) {
+        nombreUserspan.textContent=username;
+        
+    }
+}
+obtenerUsername();
+
+function registrar() {
+    var username = document.getElementById("username").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var nombre = document.getElementById("nombre").value;
+    var apellidos = document.getElementById("apellido").value;
+
+    var usuario = {
+        "username": username,
+        "email": email,
+        "password": password,
+        "nombre": nombre,
+        "apellidos": apellidos
+    };
+
+    fetch(`http://localhost:8084/usuarios/alta`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(usuario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud de registro.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Usuario registrado:', data);
+        window.location.href = "suscripcion.html";
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
