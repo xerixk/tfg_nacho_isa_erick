@@ -28,6 +28,11 @@ public class PeliculasRestController {
 		return prepo.findAll();
 }
 	
+	@GetMapping("/todasPorUser/{username}")
+	public List<Pelicula> todasPorTarifa(@PathVariable String username){
+		return prepo.findByUsername(username);
+}
+	
 	@GetMapping("/destacada")
 	public List<Pelicula> destacado(){
 		return prepo.findBydestacado();

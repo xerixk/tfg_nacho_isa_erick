@@ -7,6 +7,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The persistent class for the peliculas database table.
@@ -16,9 +22,14 @@ import java.util.Objects;
 @Table(name="peliculas")
 @NamedQuery(name="Pelicula.findAll", query="SELECT p FROM Pelicula p")
 public class Pelicula implements Serializable {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_pelicula")
 	private int idPelicula;
 
@@ -35,27 +46,26 @@ public class Pelicula implements Serializable {
 
 	private String nombre;
 
-	private double precio;
-	
 	private int destacado;
 
 	@Lob
 	private String reparto;
 
 	//bi-directional many-to-one association to Guardar
-	@OneToMany(mappedBy="pelicula")
-	private List<Guardar> guardars;
+	
 
 	//bi-directional many-to-one association to Categoria
-	@ManyToOne
-	@JoinColumn(name="id_Categoria")
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_Categoria", referencedColumnName = "id_categoria")
 	private Categoria categoria;
-
-	public Pelicula() {
-	}
+	
+	 @ManyToOne(fetch = FetchType.LAZY)
+	    @JoinColumn(name = "id_tarifa", referencedColumnName = "id_tarifa")
+	    private Tarifa tarifa;
 
 	public int getIdPelicula() {
-		return this.idPelicula;
+		return idPelicula;
 	}
 
 	public void setIdPelicula(int idPelicula) {
@@ -63,7 +73,7 @@ public class Pelicula implements Serializable {
 	}
 
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
@@ -71,7 +81,7 @@ public class Pelicula implements Serializable {
 	}
 
 	public EstatusPelicula getEstatus() {
-		return this.estatus;
+		return estatus;
 	}
 
 	public void setEstatus(EstatusPelicula estatus) {
@@ -79,7 +89,7 @@ public class Pelicula implements Serializable {
 	}
 
 	public byte getEstrenos() {
-		return this.estrenos;
+		return estrenos;
 	}
 
 	public void setEstrenos(byte estrenos) {
@@ -87,7 +97,7 @@ public class Pelicula implements Serializable {
 	}
 
 	public int getFechaEstreno() {
-		return this.fechaEstreno;
+		return fechaEstreno;
 	}
 
 	public void setFechaEstreno(int fechaEstreno) {
@@ -95,7 +105,7 @@ public class Pelicula implements Serializable {
 	}
 
 	public String getImagen() {
-		return this.imagen;
+		return imagen;
 	}
 
 	public void setImagen(String imagen) {
@@ -103,23 +113,15 @@ public class Pelicula implements Serializable {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public double getPrecio() {
-		return this.precio;
-	}
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-	
 	public int getDestacado() {
-		return this.destacado;
+		return destacado;
 	}
 
 	public void setDestacado(int destacado) {
@@ -127,41 +129,31 @@ public class Pelicula implements Serializable {
 	}
 
 	public String getReparto() {
-		return this.reparto;
+		return reparto;
 	}
 
 	public void setReparto(String reparto) {
 		this.reparto = reparto;
 	}
 
-	public List<Guardar> getGuardars() {
-		return this.guardars;
-	}
-
-	public void setGuardars(List<Guardar> guardars) {
-		this.guardars = guardars;
-	}
-
-	public Guardar addGuardar(Guardar guardar) {
-		getGuardars().add(guardar);
-		guardar.setPelicula(this);
-
-		return guardar;
-	}
-
-	public Guardar removeGuardar(Guardar guardar) {
-		getGuardars().remove(guardar);
-		guardar.setPelicula(null);
-
-		return guardar;
-	}
-
 	public Categoria getCategoria() {
-		return this.categoria;
+		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Tarifa getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(Tarifa tarifa) {
+		this.tarifa = tarifa;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -185,9 +177,9 @@ public class Pelicula implements Serializable {
 	public String toString() {
 		return "Pelicula [idPelicula=" + idPelicula + ", descripcion=" + descripcion + ", estatus=" + estatus
 				+ ", estrenos=" + estrenos + ", fechaEstreno=" + fechaEstreno + ", imagen=" + imagen + ", nombre="
-				+ nombre + ", precio=" + precio + ", reparto=" + reparto + ", guardars=" + guardars + ", categoria="
-				+ categoria + "]";
+				+ nombre + ", destacado=" + destacado + ", reparto=" + reparto + ", categoria=" + categoria
+				+ ", tarifa=" + tarifa + "]";
 	}
-
-	
+	 
+	 
 }

@@ -1,6 +1,12 @@
 package pelicula.model.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 
 /**
@@ -19,9 +25,7 @@ public class Categoria implements Serializable {
 	private int idCategoria;
 
 	private String descripcion;
-
 	private String nombre;
-
 
 
 	public Categoria() {

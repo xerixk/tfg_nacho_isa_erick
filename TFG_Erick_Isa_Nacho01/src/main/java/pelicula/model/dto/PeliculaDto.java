@@ -1,10 +1,13 @@
 package pelicula.model.dto;
 
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,7 +39,8 @@ public class PeliculaDto {
 	private String reparto;
 
 	private int idCategoria;
-
+	
+	
 
 	public int getIdPelicula() {
 		return idPelicula;

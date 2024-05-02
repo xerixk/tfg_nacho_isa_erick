@@ -7,6 +7,12 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
@@ -16,6 +22,7 @@ import java.util.List;
 @Entity
 @Table(name="usuarios")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +36,7 @@ public class Usuario implements Serializable {
 	private String email;
 
 	private int enabled;
-
+	
 	@Temporal(TemporalType.DATE)
 	private Date fecha_Registro;
 
@@ -39,10 +46,13 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-one association to Guardar
 	@OneToMany(mappedBy="usuario")
+	
 	private List<Guardar> guardars;
 
 	//bi-directional many-to-many association to Perfile
-	
+	 @OneToOne
+	    @JoinColumn(name = "id_tarifa", nullable = false)
+	    private Tarifa tarifa;
 
 	public Usuario() {
 	}
@@ -125,6 +135,38 @@ public class Usuario implements Serializable {
 		guardar.setUsuario(null);
 
 		return guardar;
+	}
+
+	public Tarifa getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(Tarifa tarifa) {
+		this.tarifa = tarifa;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(username, other.username);
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [username=" + username + ", apellidos=" + apellidos + ", email=" + email + ", enabled="
+				+ enabled + ", fecha_Registro=" + fecha_Registro + ", nombre=" + nombre + ", password=" + password
+				+ ", guardars=" + guardars + ", tarifa=" + tarifa + "]";
 	}
 
 	

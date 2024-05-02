@@ -12,5 +12,6 @@ public interface PeliculaDao {
 	List<Pelicula> buscarPorNombre(String nombre);
 	List<Pelicula> buscarPorCategoria(int idCategoria);
 	Pelicula verDescripcion(int idPelicula);
+	List<Pelicula> findByUsername(String username);
 
 }

@@ -21,4 +21,8 @@ public interface PeliculaRepository  extends JpaRepository<Pelicula, Integer>{
 	@Query("SELECT p FROM Pelicula p WHERE p.categoria.idCategoria = ?1")
 	public List<Pelicula> findByCategoria(int idCategoria);
 	
+	
+    @Query("SELECT p FROM Pelicula p  JOIN Usuario u ON p.tarifa <= u.tarifa WHERE u.username = ?1")
+	   public List<Pelicula> findByUsername(String username);
+	
 }

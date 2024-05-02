@@ -47,4 +47,12 @@ public class PeliculaDaoImplMy8 implements PeliculaDao{
 		return prepo.findById(idPelicula).orElse(null);
 	}
 
+	@Override
+	public List<Pelicula> findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return prepo.findByUsername(username);
+	}
+
+	
+
 }

@@ -3,6 +3,8 @@ let urlcat = "http://localhost:8084/categoria/todas";
 
 let urlpelis = "http://localhost:8084/pelicula/todas";
 
+let urlpelisuser = "http://localhost:8084/pelicula/todasPorUser/{username}";
+
 let urlporCategoria = "http://localhost:8084/pelicula/porCategoria/";
 
 let verdescrip = "http://localhost:8084/pelicula/verDescripcion/";
@@ -65,10 +67,9 @@ function verPorCategoria(id){
         });
     });
 }
-
-
+let user=sessionStorage.getItem("username")
 let contenedorPelis = document.getElementById("contenedorPelis");
-fetch(urlpelis).then(res => res.json()).then(peliculas =>{
+fetch(` http://localhost:8084/pelicula/todasPorUser/${user}`).then(res => res.json()).then(peliculas =>{
     peliculas.forEach(pelis => {
         
         let cont = document.createElement("div");
@@ -160,7 +161,59 @@ function busq_nombre(){
     })
 }
 
+/*
+document.addEventListener("DOMContentLoaded", function() {
+    obtenerPeliculas();
+});
+
+function obtenerPeliculas() {
+    fetch("http://localhost:8084/pelicula/todas")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener las películas.');
+        }
+        return response.json();
+    })
+    .then(peliculas => {
+        mostrarPeliculas(peliculas);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function mostrarPeliculas(peliculas) {
+    const contenedor = document.getElementById("contenedorPelis");
+    contenedor.innerHTML = ""; // Limpiar el contenedor antes de agregar nuevas películas
+
+    peliculas.forEach(pelicula => {
+        const contenedorPelicula = document.createElement("div");
+        contenedorPelicula.classList.add("pelicula");
+
+        // Aquí puedes construir la estructura HTML para cada película, por ejemplo:
+        const imagen = document.createElement("img");
+        imagen.src = "img/" + pelicula.imagen;
+        contenedorPelicula.appendChild(imagen);
+
+        const titulo = document.createElement("h2");
+        titulo.textContent = pelicula.nombre;
+        contenedorPelicula.appendChild(titulo);
+
+        // Puedes agregar más elementos HTML según tus necesidades
+
+        contenedor.appendChild(contenedorPelicula);
+    });
+}
+*/
 let nombreUserspan=document.getElementById("nombreUser");
+function obtenerUsername() {
+    let username = sessionStorage.getItem("username");
+    if (username) {
+        nombreUserspan.textContent=username;
+        
+    }
+}
+obtenerUsername();
 
 
 function inicioSesion() {
@@ -198,14 +251,10 @@ function inicioSesion() {
         console.error('Error:', error);
     });
 }
-function obtenerUsername() {
-    let username = sessionStorage.getItem("username");
-    if (username) {
-        nombreUserspan.textContent=username;
-        
-    }
+
+function verSuscripcion() {
+    window.location.href = "suscripcion.html";
 }
-obtenerUsername();
 
 function registrar() {
     var username = document.getElementById("username").value;
@@ -237,7 +286,7 @@ function registrar() {
     })
     .then(data => {
         console.log('Usuario registrado:', data);
-        window.location.href = "suscripcion.html";
+        
 
     })
     .catch(error => {
