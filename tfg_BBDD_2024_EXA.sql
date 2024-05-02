@@ -147,12 +147,13 @@ grant all privileges on vacantes_BBDD_2024_EXA.* to uvacantes_2024;
 
 SELECT peliculas.*
 FROM peliculas
-JOIN tarifas_peliculas ON peliculas.id_pelicula = tarifas_peliculas.id_pelicula
-JOIN tarifas  ON tarifas_peliculas.id_tarifa = tarifas.id_tarifa
+
+JOIN tarifas  ON peliculas.id_tarifa = tarifas.id_tarifa
 WHERE tarifas.nombre = 'Tarifa Basic';
+
+SELECT peliculas.* FROM peliculas JOIN usuarios ON peliculas.id_tarifa = usuarios.id_tarifa WHERE usuarios.username = 'cliente2' AND (peliculas.id_tarifa = usuarios.id_tarifa OR (peliculas.id_tarifa <= usuarios.id_tarifa AND peliculas.id_tarifa >= 1));
 
 SELECT peliculas.*
 FROM peliculas
-JOIN tarifas_peliculas ON peliculas.id_pelicula = tarifas_peliculas.id_pelicula
-JOIN usuarios ON tarifas_peliculas.id_tarifa = usuarios.id_tarifa
-WHERE usuarios.username = 'cliente2';
+JOIN usuarios ON peliculas.id_tarifa <= usuarios.id_tarifa
+WHERE usuarios.username = 'Xerixk';
