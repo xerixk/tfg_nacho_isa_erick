@@ -69,7 +69,9 @@ function verPorCategoria(id){
 }
 let user=sessionStorage.getItem("username")
 let contenedorPelis = document.getElementById("contenedorPelis");
-fetch(` http://localhost:8084/pelicula/todasPorUser/${user}`).then(res => res.json()).then(peliculas =>{
+fetch(` http://localhost:8084/pelicula/todasPorUser/${user}`)
+.then(res => res.json())
+.then(peliculas =>{
     peliculas.forEach(pelis => {
         
         let cont = document.createElement("div");
@@ -116,21 +118,43 @@ function verDescPeli(id){
         nombre.innerHTML = `${pelicula.nombre}`;
         descripcion.innerHTML = `${pelicula.descripcion}`;
         reparto.innerHTML = `${pelicula.reparto}`;
-        guardar.innerHTML = `<i class="fas fa-bookmark"></i>`;
+        
+        guardar.innerHTML = `<i id="guardar" class="fa-regular fa-bookmark" onmouseover="blanco(this)" onmouseout="vacio(this)")></i>`
+        ;
     
     
         contene.appendChild(imagen);
         contene.appendChild(nombre);
         contene.appendChild(descripcion);
         contene.appendChild(reparto);
-    
+    let contVideo= document.createElement("div");
+    let video=document.createElement("video")
+    contVideo.id="idVideo";
+    video.src="videos/videoPrueba.mp4";
+    video.controls=true;
+    video.width=500;
+    video.height=300;
+
+    contVideo.appendChild(video)
     
         verpelicula.appendChild(contene);
+        verpelicula.appendChild(contVideo);
         verpelicula.appendChild(guardar);
     
     })
 }
 
+function blanco(elemento) {
+    
+        elemento.classList.remove("fa-regular");
+        elemento.classList.add("fa-solid");
+ 
+    
+}
+function vacio(elemento) {
+    elemento.classList.remove("fa-solid");
+    elemento.classList.add("fa-regular");
+}
 
 function busq_nombre(){
     let titulo = document.getElementById("busq_btn").value;
@@ -159,6 +183,32 @@ function busq_nombre(){
         })
 
     })
+}
+function miLista() {
+    contenedorPelis.innerHTML = "";
+    verpelicula.style.display = "none";
+    fetch(`http://localhost:8084/guardar/todasPorUser/${user}`)
+        .then(res => res.json())
+        .then(peliculas => {
+            peliculas.forEach(pelis => {
+                let cont = document.createElement("div");
+                let nombre = document.createElement("p");
+                let imagen = document.createElement("img");
+
+                cont.id = "cont_pelis";
+                nombre.id = `${pelis.idPelicula}`
+                nombre.innerHTML = `${pelis.nombre}`;
+                imagen.id = "img";
+                imagen.src = 'img/' + pelis.imagen;
+
+                cont.appendChild(imagen);
+                cont.appendChild(nombre);
+                contenedorPelis.appendChild(cont);
+
+                cont.addEventListener("click", () => verDescPeli(nombre.id));
+            });
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 /*

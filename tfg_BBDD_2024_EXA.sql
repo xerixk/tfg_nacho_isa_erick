@@ -108,19 +108,17 @@ INSERT INTO Peliculas (id_pelicula, nombre, descripcion, fechaEstreno, duracion,
 -- DROP TABLE IF EXISTS `Solicitudes`;
 CREATE TABLE `Guardar` (
   id_guardar int NOT NULL AUTO_INCREMENT,
-  fecha date NOT NULL,
-  archivo varchar(250) NOT NULL,
-  comentarios varchar(2000),
-  estado  tinyint NOT NULL default 0,
-  -- 0 presentada, 1 adjudicada
   id_Pelicula int NOT NULL,
   username varchar(45) NOT NULL,
   PRIMARY KEY (id_guardar),
-  UNIQUE(id_Pelicula,username),
   FOREIGN KEY (username) REFERENCES `Usuarios` (username),
   FOREIGN KEY (id_Pelicula) REFERENCES `Peliculas` (id_pelicula)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+insert into `Guardar`(id_guardar,id_pelicula,username)values
+(1,1,'Xerixk'),
+(2,2,'cliente'),
+(3,3,'cliente2');
 
 -- DROP TABLE IF EXISTS `UsuarioPerfil`;
 

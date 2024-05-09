@@ -3,6 +3,7 @@ package pelicula.model.entidades;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -18,14 +19,6 @@ public class Guardar implements Serializable {
 	@Column(name="id_guardar")
 	private int idGuardar;
 
-	private String archivo;
-
-	private String comentarios;
-
-	private byte estado;
-
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
 
 	//bi-directional many-to-one association to Pelicula
 	@ManyToOne
@@ -48,37 +41,7 @@ public class Guardar implements Serializable {
 		this.idGuardar = idGuardar;
 	}
 
-	public String getArchivo() {
-		return this.archivo;
-	}
-
-	public void setArchivo(String archivo) {
-		this.archivo = archivo;
-	}
-
-	public String getComentarios() {
-		return this.comentarios;
-	}
-
-	public void setComentarios(String comentarios) {
-		this.comentarios = comentarios;
-	}
-
-	public byte getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(byte estado) {
-		this.estado = estado;
-	}
-
-	public Date getFecha() {
-		return this.fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+	
 
 	public Pelicula getPelicula() {
 		return this.pelicula;
@@ -96,4 +59,28 @@ public class Guardar implements Serializable {
 		this.usuario = usuario;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(idGuardar, pelicula, usuario);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Guardar other = (Guardar) obj;
+		return idGuardar == other.idGuardar && Objects.equals(pelicula, other.pelicula)
+				&& Objects.equals(usuario, other.usuario);
+	}
+
+	@Override
+	public String toString() {
+		return "Guardar [idGuardar=" + idGuardar + ", pelicula=" + pelicula + ", usuario=" + usuario + "]";
+	}
+
+	
 }
