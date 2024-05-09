@@ -9,6 +9,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 80px;
+    background: linear-gradient(to right, #001c8c, #a01ab8);
     grid-template-areas:
         "header header"
         "section section"
@@ -32,25 +33,30 @@ header{
 header a{
     cursor: pointer;
 }
+h1>img{
+    height: 130px;
+}
 
 section{
     grid-area: section;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 34%, rgba(60,84,201,1) 74%, rgba(85,149,255,1) 100%);
+    /* background: rgb(0,0,0); */
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 34%, rgba(60,84,201,1) 74%, rgba(85,149,255,1) 100%); */
+    text-align: center;
+
     color: white;
 }
 
 footer{
     grid-area: footer;
-    background-color: #000000;
+    /* background-color: #000000; */
 }
 
 #cont_cat{
     cursor: pointer;
     width: 125px;
     padding: 5px;
-    background-color: #000000;
-    border: 1px solid #525252;
+    /* background-color: #000000; */
+    border: 1px solid #ffffff;
     color: white;
     border-radius: 20px;
     text-align: center;
@@ -172,4 +178,13 @@ h1{
 .fa-bookmark:hover{
     font-size: 45px;
     
+}
+
+.pp{
+    text-align: center;
+    border: 2px solid ;
+}
+#mas{
+margin-top: 50%;
+font-size: 50px;
 }

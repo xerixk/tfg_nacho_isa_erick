@@ -7,13 +7,14 @@
 body {
     height: 100vh;
     display: grid;
+    background: linear-gradient(to right, #001c8c, #a01ab8);
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 80px;
     grid-template-areas:
         "header header"
         "section section"
         "footer footer";
-        font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif";
+        font-family: "Montserrat";
 }
 
 header{
@@ -24,16 +25,20 @@ header{
     position: sticky;
     top: 0px;
 }
+h1>img{
+    height: 130px;
+}
 
 section{
     grid-area: section;
-    background-color: rgb(68, 39, 68);
+
 }
 
 footer{
     grid-area: footer;
-    background-color: #2c1e4d;
+
 }
+/* dfcnd */
 
 #img{
     width: 250px;
@@ -44,9 +49,9 @@ footer{
 #contenedorP{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    /* width: 100%; */
     height: auto;
-    background-color: rgb(10, 9, 10);
+   
 }
 
 #texto{
@@ -78,14 +83,14 @@ footer{
     height: 265px;
 }
 
-#estrenos{
+/* #estrenos{
     display: flex;
     height: 400px;
     margin: 0 auto;
     align-items: center;
     gap: 10px;
-    color: white;
-}
+
+} */
 
 #btn_sub{
     width: 120px;
@@ -122,7 +127,7 @@ footer{
 
 #titulo{
     font-size: 30px;
-    font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif";
+    /* font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif"; */
     margin: 20px auto;
 }
 
@@ -134,8 +139,8 @@ footer{
 
 #imagen0{
     border-radius: 100%;
-    background-color: #fff;
-    background: linear-gradient(176deg, rgba(0,0,0,1) 0%, rgb(31, 43, 87) 98%, rgb(71, 71, 104) 99%, rgb(55, 74, 88) 100%);
+    /* background-color: #fff;
+    background: linear-gradient(176deg, rgb(180, 33, 33) 0%, rgb(31, 43, 87) 98%, rgb(71, 71, 104) 99%, rgb(55, 74, 88) 100%); */
 }
 
 #oferta{
@@ -144,10 +149,10 @@ footer{
     height: 150px;
     color: white;
     padding: 20px;
-    background: rgb(10,0,203);
+    /* background: rgb(10,0,203); */
     z-index: 1000;
-    font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif";
-    background: radial-gradient(circle, rgba(10,0,203,1) 0%, rgba(0,0,0,1) 74%, rgba(76,47,184,1) 100%);
+    /* font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif"; */
+    /* background: radial-gradient(circle, rgba(10,0,203,1) 0%, rgba(0,0,0,1) 74%, rgba(76,47,184,1) 100%); */
 }
 
 #oferta p{
@@ -159,6 +164,88 @@ footer{
     margin: 0 auto;
     text-align: center;
     font-weight: bolder;
-    color: #6a0ffd;
+    color: #bc87cd;
     cursor: pointer;
 }
+
+/* preguntas  */
+#estrenos {
+    height: 380px;
+    text-align: center;
+    
+  }
+  
+  .collapsible {
+background-color: #002b8f;
+    color:  rgb(230, 130, 255);
+    text-align: center;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+  
+    /* outline: none; */
+    font-size: 25px;
+  }
+  
+  .active,
+  .collapsible:hover {
+  color: rgb(190, 151, 216);
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    color: white;
+  
+  }
+  
+  #contenedor_iconitos {
+    height: 280px;
+  
+  }
+  
+/* Para dispositivos con un ancho máximo de 768px */
+@media only screen and (max-width: 768px) {
+    #texto {
+        width: 100%;
+    }
+    #peli_desta {
+        width: 90%;
+    }
+    #cont_destac {
+        width: 100%;
+    }
+    #estrenos {
+        flex-direction: column;
+        height: auto;
+    }
+    #parafo {
+        width: 100%;
+    }
+}
+
+
+
+
+/* Para dispositivos con un ancho máximo de 576px */
+@media only screen and (max-width: 576px) {
+    #titulo {
+        font-size: 25px;
+    }
+    #oferta {
+        height: auto;
+    }
+    #oferta p {
+        font-size: 18px;
+    }
+    /* Ajuste del degradado para dispositivos más pequeños */
+    /* #oferta {
+        /* background: radial-gradient(
+            ellipse at center,
+            rgba(10, 0, 203, 1) 0%,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(76, 47, 184, 1) 100%
+        ); */
+    } 

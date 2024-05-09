@@ -11,11 +11,14 @@
 </head>
 <body>
     <header>
-        <h1 onclick="logo()">HBO</h1>
+        <h1 onclick="logo()">
+            <img src="img/logo skycinema.png" alt="logo_sky_cinema">
+        </h1>
         <div id="log">
-            <a class="nav-link" onclick="miLista()">Mi lista</a>
+            <a class="nav-link user" onclick="miLista()" >Mi lista</a>
             <div id="search" onclick="fbuscar()"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <a id="nombre" class="nav-link">Bienvenid@ <span id="nombreUser"></span> </a>
+            <a id="nombre" class="nav-link user" >Bienvenid@ <span id="nombreUser" ></span> </a>
+            <a id="nombre" class="nav-link admin" >Admin</a>
             <hr> 
             <a onclick="cerrarSesion()" class="nav-link" id="btn_sub">Cerrar Sesion</a>
         </div>
@@ -28,8 +31,16 @@
                 </form>
             </div>
         </div>
-        <div id="contenedor"></div>
-        <div id="contenedorPelis"></div>
+        <div id="contenedor">
+            <div id="cont_cat" class="admin">
+                <p id="adminCat">+</p>
+            </div>
+        </div>
+        <div id="contenedorPelis">
+            <div class="admin pp" id="cont_pelis">
+                <p id="mas">+</p>
+            </div>
+        </div>
         <div id="pelicula">
             
         </div>

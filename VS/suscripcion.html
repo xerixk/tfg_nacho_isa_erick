@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>suscripcion</title>
     <link rel="stylesheet" href="css/suscripcion.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div onclick="logo()" id="logo">SKYCINEMA</div>
+        <h1 onclick="logo()" >
+            <img src="img/logo skycinema.png" alt="logo_sky_cinema">
+        </h1>
     </header>
     <section>
         <div id="titulo_planes">
-            <h1>ELIGE TU PLAN</h1>
+            <h1 class="elige">ELIGE TU PLAN</h1>
             <p>Selecciona el que mejor se adapte a ti</p>
         </div>
         <div id="contenedor_planes">
             <div id="planes">
                 <div id="titPlan">
                     <h1>Basic</h1>
-                    <b>10€/mes</b>
+                    <b>9,99€/mes</b>
                 </div>
                 
                 <p>Acceso estándar a una selección limitada de películas y series a un precio asequible.</p>
@@ -38,10 +43,11 @@
                 <button class="bot">Comprar</button>
 
             </div>
+            <br>
             <div id="planes">
                 <div id="titPlan">
                     <h1>Premium</h1>
-                    <b>15€/mes</b>
+                    <b>15.99€/mes</b>
                 </div>
                 
                 <p>Acceso completo a todo el catálogo, incluyendo contenido exclusivo y estrenos, con calidad HD y la capacidad de ver en varios dispositivos.</p>
@@ -61,10 +67,11 @@
                 <button class="bot">Comprar</button>
 
             </div>
+            <br>
             <div id="planes">
                 <div id="titPlan">
                     <h1>Vip</h1>
-                    <b>20€/mes</b>
+                    <b>19.99€/mes</b>
                 </div>
                 <p> Acceso exclusivo a todo, incluyendo estrenos y eventos especiales, con calidad UHD y HDR, además de beneficios adicionales.</p>
                 <br>
@@ -87,7 +94,9 @@
             </div>
         </div>
     </section>
-    <footer></footer>
+    <footer>
+        &copy;SkyCinema - 2024
+    </footer>
     <script src="js/suscribcion.js"></script>
 </body>
 </html>
