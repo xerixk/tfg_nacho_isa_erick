@@ -155,3 +155,10 @@ SELECT peliculas.*
 FROM peliculas
 JOIN usuarios ON peliculas.id_tarifa <= usuarios.id_tarifa
 WHERE usuarios.username = 'Xerixk';
+
+
+SELECT peliculas.*
+FROM Guardar
+JOIN Usuarios ON Guardar.username = Usuarios.username
+JOIN Peliculas ON Guardar.id_Pelicula = Peliculas.id_pelicula
+WHERE Usuarios.username = 'cliente';

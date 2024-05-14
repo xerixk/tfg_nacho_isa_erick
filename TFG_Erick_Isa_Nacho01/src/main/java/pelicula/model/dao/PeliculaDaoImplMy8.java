@@ -2,10 +2,12 @@ package pelicula.model.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import pelicula.model.entidades.Pelicula;
 import pelicula.model.repository.PeliculaRepository;
 
+@Repository
 public class PeliculaDaoImplMy8 implements PeliculaDao{
 
 	@Autowired

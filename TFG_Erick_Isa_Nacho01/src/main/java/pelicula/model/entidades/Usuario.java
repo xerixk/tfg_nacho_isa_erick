@@ -115,28 +115,7 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public List<Guardar> getGuardars() {
-		return this.guardars;
-	}
-
-	public void setGuardars(List<Guardar> guardars) {
-		this.guardars = guardars;
-	}
-
-	public Guardar addGuardar(Guardar guardar) {
-		getGuardars().add(guardar);
-		guardar.setUsuario(this);
-
-		return guardar;
-	}
-
-	public Guardar removeGuardar(Guardar guardar) {
-		getGuardars().remove(guardar);
-		guardar.setUsuario(null);
-
-		return guardar;
-	}
-
+	
 	public Tarifa getTarifa() {
 		return tarifa;
 	}

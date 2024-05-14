@@ -4,6 +4,7 @@ package pelicula.model.dto;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import pelicula.model.entidades.Guardar;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +35,9 @@ public class UsuarioDto implements Serializable {
 	private String nombre;
 
 	private String password;
+	@OneToMany(mappedBy="usuario")
+	
+	private List<Guardar> guardars;
 
 
 	public UsuarioDto() {
@@ -94,7 +98,27 @@ public class UsuarioDto implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public List<Guardar> getGuardars() {
+		return this.guardars;
+	}
 
+	public void setGuardars(List<Guardar> guardars) {
+		this.guardars = guardars;
+	}
+
+	public Guardar addGuardar(Guardar guardar) {
+		getGuardars().add(guardar);
+		guardar.setUsuario(this);
+
+		return guardar;
+	}
+
+	public Guardar removeGuardar(Guardar guardar) {
+		getGuardars().remove(guardar);
+		guardar.setUsuario(null);
+
+		return guardar;
+	}
 	
 	
 	@Override

@@ -3,6 +3,7 @@ package pelicula.model.dao;
 import java.util.List;
 
 import pelicula.model.dto.UsuarioDto;
+import pelicula.model.entidades.Usuario;
 
 
 

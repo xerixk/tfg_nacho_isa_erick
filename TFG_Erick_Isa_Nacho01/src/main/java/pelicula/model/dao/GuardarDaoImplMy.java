@@ -23,12 +23,38 @@ public class GuardarDaoImplMy implements GuardarDao{
 		return grepo.findPeliculasByUsername(username);
 	}
 
-	
+	@Override
+	public boolean existsByUsuarioUsernameAndPeliculaIdPelicula(String username, Integer idPelicula) {
+		
+		return grepo.existsByUsuarioUsernameAndPeliculaIdPelicula(username, idPelicula);
+	}
+
+	@Override
+	public Guardar insertOne(Guardar guardar) {
+		// TODO Auto-generated method stub
+		try {
+			return grepo.save(guardar);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
+	@Override
+	public void deleteByUsuarioUsernameAndPeliculaIdPelicula(String username, Integer peliculaId) {
+		// TODO Auto-generated method stub
+		grepo.deleteByUsuarioUsernameAndPeliculaIdPelicula(username, peliculaId);;
+	}
 
 	
-
-	
-	
-	
+	/*@Override
+    public boolean deleteByUsuarioUsernameAndPeliculaIdPelicula(String username, Integer peliculaId) {
+        try {
+            grepo.deleteByUsuarioUsernameAndPeliculaIdPelicula(username, peliculaId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }*/
 
 }

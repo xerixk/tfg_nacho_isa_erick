@@ -2,6 +2,8 @@ package pelicula.model.entidades;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import pelicula.model.dto.UsuarioDto;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,7 +30,7 @@ public class Guardar implements Serializable {
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="username")
-	private Usuario usuario;
+	private UsuarioDto usuario;
 
 	public Guardar() {
 	}
@@ -51,12 +53,12 @@ public class Guardar implements Serializable {
 		this.pelicula = pelicula;
 	}
 
-	public Usuario getUsuario() {
+	public UsuarioDto getUsuario() {
 		return this.usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(UsuarioDto usuarioDto) {
+		this.usuario = usuarioDto;
 	}
 
 	@Override
