@@ -5,6 +5,7 @@ package pelicula.model.dto;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import pelicula.model.entidades.Guardar;
+import pelicula.model.entidades.Perfil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +39,18 @@ public class UsuarioDto implements Serializable {
 	@OneToMany(mappedBy="usuario")
 	
 	private List<Guardar> guardars;
+	
+	@ManyToMany
+	@JoinTable(
+		name="usuarioperfil"
+		, joinColumns={
+			@JoinColumn(name="username")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="id_Perfil")
+			}
+		)
+	private List<Perfil> perfiles;
 
 
 	public UsuarioDto() {
@@ -118,6 +131,25 @@ public class UsuarioDto implements Serializable {
 		guardar.setUsuario(null);
 
 		return guardar;
+	}
+	public List<Perfil> getPerfiles() {
+		return this.perfiles;
+	}
+
+	public void setPerfiles(List<Perfil> perfiles) {
+		this.perfiles = perfiles;
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		if (perfiles == null)
+			perfiles = new ArrayList<>();
+		perfiles.add(perfil);
+	}
+	
+	public void removePerfil(Perfil perfil) {
+		if (perfiles == null)
+			perfiles = new ArrayList<>();
+		perfiles.remove(perfil);
 	}
 	
 	

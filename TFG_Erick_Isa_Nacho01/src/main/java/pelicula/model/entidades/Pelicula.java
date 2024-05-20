@@ -41,7 +41,9 @@ public class Pelicula implements Serializable {
 	private byte estrenos;
 
 	private int fechaEstreno;
-
+	
+	private int duracion;
+	
 	private String imagen;
 
 	private String nombre;
@@ -55,7 +57,7 @@ public class Pelicula implements Serializable {
 	
 
 	//bi-directional many-to-one association to Categoria
-	@JsonIgnore
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Categoria", referencedColumnName = "id_categoria")
 	private Categoria categoria;
@@ -151,6 +153,14 @@ public class Pelicula implements Serializable {
 	public void setTarifa(Tarifa tarifa) {
 		this.tarifa = tarifa;
 	}
+	public int getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+	 
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -176,10 +186,13 @@ public class Pelicula implements Serializable {
 	@Override
 	public String toString() {
 		return "Pelicula [idPelicula=" + idPelicula + ", descripcion=" + descripcion + ", estatus=" + estatus
-				+ ", estrenos=" + estrenos + ", fechaEstreno=" + fechaEstreno + ", imagen=" + imagen + ", nombre="
-				+ nombre + ", destacado=" + destacado + ", reparto=" + reparto + ", categoria=" + categoria
-				+ ", tarifa=" + tarifa + "]";
+				+ ", estrenos=" + estrenos + ", fechaEstreno=" + fechaEstreno + ", duracion=" + duracion + ", imagen="
+				+ imagen + ", nombre=" + nombre + ", destacado=" + destacado + ", reparto=" + reparto + ", categoria="
+				+ categoria + ", tarifa=" + tarifa + "]";
 	}
-	 
+
+	
+
+
 	 
 }

@@ -3,7 +3,6 @@ package pelicula.model.entidades;
 import java.io.Serializable;
 import jakarta.persistence.*;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,6 +52,19 @@ public class Usuario implements Serializable {
 	 @OneToOne
 	    @JoinColumn(name = "id_tarifa", nullable = false)
 	    private Tarifa tarifa;
+	 
+	 @ManyToMany
+		@JoinTable(
+			name="usuarioperfil"
+			, joinColumns={
+				@JoinColumn(name="username")
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="id_Perfil")
+				}
+			)
+		private List<Perfil> perfiles;
+
 
 	public Usuario() {
 	}
@@ -123,12 +135,34 @@ public class Usuario implements Serializable {
 	public void setTarifa(Tarifa tarifa) {
 		this.tarifa = tarifa;
 	}
+	public List<Perfil> getPerfiles() {
+		return this.perfiles;
+	}
+
+	public void setPerfiles(List<Perfil> perfiles) {
+		this.perfiles = perfiles;
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		if (perfiles == null)
+			perfiles = new ArrayList<>();
+		perfiles.add(perfil);
+	}
+	
+	public void removePerfil(Perfil perfil) {
+		if (perfiles == null)
+			perfiles = new ArrayList<>();
+		perfiles.remove(perfil);
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(username);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -3,28 +3,27 @@ create database tfg_BBDD_2024_EXA;
 use tfg_BBDD_2024_EXA;
 
 CREATE TABLE `Categorias` (
-  id_categoria int NOT NULL AUTO_INCREMENT,
-  nombre varchar(100) NOT NULL,
-   descripcion varchar(2000),
+  id_categoria INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion VARCHAR(2000),
   PRIMARY KEY (id_categoria)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-insert into `tfg_BBDD_2024_EXA`.`categorias` (`id_categoria`, `nombre`, `descripcion`) values
-(1,'Miedo','Miedo'),
-(2,'Suspense','Suspense'),
-(3,'Aventura','Aventura'),
-(4,'Ciencia Ficción','Ciencia Ficción'),
-(5,'Infantil','Infantil'),
-(6,'Historia','Historia'),
-(7,'Accion','Accion'),
-(8,'Belico','Belico');
+INSERT INTO `Categorias` (`id_categoria`, `nombre`, `descripcion`) VALUES
+(1, 'Miedo', 'Miedo'),
+(2, 'Suspense', 'Suspense'),
+(3, 'Aventura', 'Aventura'),
+(4, 'Ciencia Ficción', 'Ciencia Ficción'),
+(5, 'Infantil', 'Infantil'),
+(6, 'Historia', 'Historia'),
+(7, 'Accion', 'Accion'),
+(8, 'Belico', 'Belico');
 
 CREATE TABLE `Tarifas` (
   id_tarifa INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL,
   descripcion VARCHAR(200),
   precio DECIMAL(8, 2) NOT NULL,
-  
   PRIMARY KEY (id_tarifa)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -33,45 +32,65 @@ INSERT INTO `Tarifas` (`id_tarifa`, `nombre`, `descripcion`, `precio`) VALUES
 (2, 'Tarifa Premium', 'Acceso completo a todo el catálogo, incluyendo contenido exclusivo y estrenos, con calidad HD y la capacidad de ver en varios dispositivos.', 15.00),
 (3, 'Tarifa Vip', 'Acceso exclusivo a todo, incluyendo estrenos y eventos especiales, con calidad UHD y HDR, además de beneficios adicionales.', 20.00);
 
+CREATE TABLE `Perfiles` (
+  id_perfil INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id_perfil)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- DROP TABLE IF EXISTS `Usuarios`;
+INSERT INTO `Perfiles` (`id_perfil`, `nombre`) VALUES
+(1, 'Admin'),
+(2, 'Cliente');
+
 CREATE TABLE `Usuarios` (
-  username varchar(45) NOT NULL PRIMARY KEY,
-  nombre varchar(45) NOT NULL,
-  apellidos varchar(100) not null,
-  email varchar(100) NOT NULL,
-  password varchar(100) NOT NULL,
-  enabled int NOT NULL DEFAULT 1,
-  fecha_Registro date,
-  id_tarifa int not null,
-  
+  username VARCHAR(45) NOT NULL PRIMARY KEY,
+  nombre VARCHAR(45) NOT NULL,
+  apellidos VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  enabled INT NOT NULL DEFAULT 1,
+  fecha_Registro DATE,
+  id_tarifa INT,
   UNIQUE (email),
   FOREIGN KEY (id_tarifa) REFERENCES `Tarifas` (id_tarifa)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-insert into `Usuarios`(`username`,`nombre`,`apellidos`,`email`,`password`,`enabled`,`fecha_Registro`,`id_tarifa`) values 
-('Xerixk','Erick','Suarez Tulmo','erick@gmail.com','erick1234',1,'2024-02-06',1),
-('cliente','cliente','clienteApellido','cliente@gmail.com','cliente1',1,'2024-02-06',2),
-('cliente2','cliente2','cliente2Apellido','cliente2@gmail.com','cliente2123',1,'2024-02-06',3);
+INSERT INTO `Usuarios` (`username`, `nombre`, `apellidos`, `email`, `password`, `enabled`, `fecha_Registro`, `id_tarifa`) VALUES 
+('Xerixk', 'Erick', 'Suarez Tulmo', 'erick@gmail.com', 'erick1234', 1, '2024-02-06', 1),
+('cliente', 'cliente', 'clienteApellido', 'cliente@gmail.com', 'cliente1', 1, '2024-02-06', 2),
+('cliente2', 'cliente2', 'cliente2Apellido', 'cliente2@gmail.com', 'cliente2123', 1, '2024-02-06', 3),
+('admin', 'admin', 'admin', 'admin@gmail.com', '1234', 1, '2024-05-16', NULL);
 
--- DROP TABLE IF EXISTS `Vacantes`;
+CREATE TABLE `UsuarioPerfil` (
+  username VARCHAR(45) NOT NULL,
+  id_perfil INT NOT NULL,
+  PRIMARY KEY(username, id_perfil),
+  FOREIGN KEY (username) REFERENCES `Usuarios` (username),
+  FOREIGN KEY (id_perfil) REFERENCES `Perfiles` (id_perfil)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `UsuarioPerfil` (`username`, `id_perfil`) VALUES
+('Xerixk', 2),
+('cliente', 2),
+('cliente2', 2),
+('admin', 1);
+
 CREATE TABLE `Peliculas` (
-  id_pelicula int NOT NULL AUTO_INCREMENT,
-  nombre varchar(200) NOT NULL,
-  descripcion text NOT NULL,
-  fechaEstreno int NOT NULL,
-  duracion int NOT NULL,
-  -- 0 no destacada, 1 destacada
-  destacado tinyint NOT NULL,
-  estatus enum('GUARDADA','PUBLICADA') NOT NULL,
-  Estrenos tinyint NOT NULL,
-  imagen varchar(250) NOT NULL,
-  reparto text NOT NULL,
-  id_Categoria int NOT NULL,
-  id_tarifa int NOT NULL,
+  id_pelicula INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(200) NOT NULL,
+  descripcion TEXT NOT NULL,
+  fechaEstreno INT NOT NULL,
+  duracion INT NOT NULL,
+  destacado TINYINT NOT NULL,
+  estatus ENUM('GUARDADA', 'PUBLICADA') NOT NULL,
+  estrenos TINYINT NOT NULL,
+  imagen VARCHAR(250) NOT NULL,
+  reparto TEXT NOT NULL,
+  id_categoria INT ,
+  id_tarifa INT NOT NULL,
   PRIMARY KEY (id_pelicula),
   FOREIGN KEY (id_categoria) REFERENCES `Categorias` (id_categoria),
-  foreign key(id_tarifa) references`Tarifas`(id_tarifa)
+  FOREIGN KEY (id_tarifa) REFERENCES `Tarifas` (id_tarifa)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -119,6 +138,7 @@ insert into `Guardar`(id_guardar,id_pelicula,username)values
 (1,1,'Xerixk'),
 (2,2,'cliente'),
 (3,3,'cliente2');
+
 
 -- DROP TABLE IF EXISTS `UsuarioPerfil`;
 

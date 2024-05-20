@@ -8,5 +8,5 @@ import pelicula.model.entidades.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioDto, String> {
 		
-
+	 UsuarioDto findByUsername(String username);
 }

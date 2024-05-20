@@ -9,5 +9,5 @@ import pelicula.model.entidades.Categoria;
 public interface CategoriaDao {
 	List<Categoria> findAll();
 	Categoria findById(int idCategoria);
-
+	void deleteCategoria(int idCategoria);
 }

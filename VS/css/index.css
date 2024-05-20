@@ -18,6 +18,7 @@ body {
 }
 
 header{
+    
     grid-area: header;
     background-color: #000000;
     color: white;
@@ -187,4 +188,59 @@ h1{
 #mas{
 margin-top: 50%;
 font-size: 50px;
+}
+.nav-link {
+    color: white !important;
+}
+.custom-table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd; /* Ajusta el grosor y color de los bordes */
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #000000; /* Color de fondo para el encabezado */
+    text-align: center;
+}
+
+.custom-table th,
+.custom-table td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+
+
+
+/* Estilos para los botones de operaciones */
+.edit-button,
+.delete-button {
+    background-color: #4CAF50; /* Color de fondo para botones de editar */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.delete-button {
+    background-color: #f44336; /* Color de fondo para botones de eliminar */
+}
+ #vPrevia{
+    display: none;
+ }
+ .custom-table caption {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

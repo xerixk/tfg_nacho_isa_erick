@@ -54,6 +54,10 @@ public class PeliculaDaoImplMy8 implements PeliculaDao{
 		// TODO Auto-generated method stub
 		return prepo.findByUsername(username);
 	}
+	@Override
+	public void deletePelicula(int idPelicula) {
+		prepo.deleteById(idPelicula);
+	}
 
 	
 

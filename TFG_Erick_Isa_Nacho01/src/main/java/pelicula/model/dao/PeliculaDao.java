@@ -13,5 +13,6 @@ public interface PeliculaDao {
 	List<Pelicula> buscarPorCategoria(int idCategoria);
 	Pelicula verDescripcion(int idPelicula);
 	List<Pelicula> findByUsername(String username);
+	void deletePelicula(int idPelicula);
 
 }

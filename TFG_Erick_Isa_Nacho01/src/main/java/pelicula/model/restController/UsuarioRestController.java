@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import pelicula.model.dao.PerfilDao;
 import pelicula.model.dao.UsuarioDao;
 import pelicula.model.dto.UsuarioDto;
 import pelicula.model.entidades.Usuario;
@@ -24,36 +25,38 @@ public class UsuarioRestController {
 	@Autowired
 	UsuarioDao udao;
 	
-
-	
 	@Autowired
-	UsuarioRepository urepo;
+	private PerfilDao pdao;
+	
+	
 	
 	@PostMapping("/login")
 	public ResponseEntity<UsuarioDto> login(@RequestBody Usuario user) {
 	    String username = user.getUsername();
 	    String password = user.getPassword();
-	    ;
+	    
 
 	    UsuarioDto usuario = udao.findByUsername(username);
 
 	    if (usuario != null && usuario.getPassword().equals(password)) {
 	        return ResponseEntity.ok(usuario);
 	    } else {
-	        return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	    }
 	}
-	
 	@PostMapping("/alta")
-	public UsuarioDto alta(@RequestBody UsuarioDto usuario) {
-		usuario.setFecha_Registro(new Date());
-		usuario.setEnabled(1);
-		
-		UsuarioDto pro = udao.insertOne(usuario);
-		
-		return pro;
-		
-		
-	}
+    public ResponseEntity<UsuarioDto> alta(@RequestBody UsuarioDto usuario) {
+        usuario.setFecha_Registro(new Date());
+        usuario.addPerfil(pdao.findById(2));
+        usuario.setEnabled(1);
+
+        UsuarioDto savedUsuario = udao.insertOne(usuario);
+
+        if (savedUsuario != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuario);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
 }

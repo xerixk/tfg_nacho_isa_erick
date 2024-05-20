@@ -3,8 +3,10 @@ package pelicula.model.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import jakarta.transaction.Transactional;
 import pelicula.model.entidades.Pelicula;
 
 public interface PeliculaRepository  extends JpaRepository<Pelicula, Integer>{
@@ -24,5 +26,10 @@ public interface PeliculaRepository  extends JpaRepository<Pelicula, Integer>{
 	
     @Query("SELECT p FROM Pelicula p  JOIN Usuario u ON p.tarifa <= u.tarifa WHERE u.username = ?1")
 	   public List<Pelicula> findByUsername(String username);
+    
+    @Modifying
+    @Transactional
+    @Query("UPDATE Pelicula p SET p.categoria = null WHERE p.categoria.idCategoria = ?1")
+    void updateCategoriaToNull(int id);
 	
 }
