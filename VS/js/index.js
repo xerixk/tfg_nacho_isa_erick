@@ -219,11 +219,13 @@ function busq_nombre() {
             });
         });
 }
+
+let contCategorias=document.getElementById("contenedor");
+let contPeliculas=document.getElementById("contenedorPelis");
+
 function esquema() {
     let esquema= document.getElementById("esquema");
     let vPrevia= document.getElementById("vPrevia");
-    let contCategorias=document.getElementById("contenedor");
-    let contPeliculas=document.getElementById("contenedorPelis");
     contPeliculas.style.display="none";
     esquema.style.display="none";
     vPrevia.style.display="block";
@@ -438,11 +440,11 @@ function inicioSesion() {
         return response.json();
     })
     .then(usuario => {
-        if(usuario.perfiles && usuario.perfiles.length > 0){
+       
             sessionStorage.setItem("username", usuario.username);
-            sessionStorage.setItem("idPerfil", usuario.perfiles[0].idPerfil);
+            sessionStorage.setItem("idPerfil", usuario.idPerfil);
             window.location.href = "index.html";    
-        }
+       
     })
     .catch(error => {
         console.error('Error:', error);
@@ -576,4 +578,10 @@ function actualizarIcono(guardado) {
         icono.classList.remove("fa-solid");
         icono.classList.add("fa-regular");
     }
+}
+function fañadirCat() {
+    contPeliculas.style.display="none";
+    contCategorias.style.display="none";
+
+    document.getElementById("form_publicarCt").style.display = "block";
 }

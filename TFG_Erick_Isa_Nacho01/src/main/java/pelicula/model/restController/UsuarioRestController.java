@@ -1,6 +1,8 @@
 package pelicula.model.restController;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pelicula.model.dao.PerfilDao;
 import pelicula.model.dao.UsuarioDao;
+import pelicula.model.dto.UserDto;
 import pelicula.model.dto.UsuarioDto;
 import pelicula.model.entidades.Usuario;
 import pelicula.model.repository.UsuarioRepository;
@@ -31,7 +34,7 @@ public class UsuarioRestController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<UsuarioDto> login(@RequestBody Usuario user) {
+	public ResponseEntity<?> login(@RequestBody UsuarioDto user) {
 	    String username = user.getUsername();
 	    String password = user.getPassword();
 	    
@@ -39,10 +42,13 @@ public class UsuarioRestController {
 	    UsuarioDto usuario = udao.findByUsername(username);
 
 	    if (usuario != null && usuario.getPassword().equals(password)) {
-	        return ResponseEntity.ok(usuario);
+	    	UserDto udto=new UserDto();
+	    	udto.setUsername(usuario.getUsername()); 
+	    	
+	    	udto.setIdPerfil(usuario.getPerfiles().get(0).getIdPerfil());
+	        return ResponseEntity.ok(udto);
 	    } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-	    }
+	    	return ResponseEntity.notFound().build();	    }
 	}
 	@PostMapping("/alta")
     public ResponseEntity<UsuarioDto> alta(@RequestBody UsuarioDto usuario) {
