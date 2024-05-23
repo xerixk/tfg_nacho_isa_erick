@@ -10,4 +10,5 @@ public interface CategoriaDao {
 	List<Categoria> findAll();
 	Categoria findById(int idCategoria);
 	void deleteCategoria(int idCategoria);
+	Categoria insertOne(Categoria categoria);
 }

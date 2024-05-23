@@ -38,7 +38,7 @@ public class Pelicula implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private EstatusPelicula estatus;
 
-	private byte estrenos;
+	private int estrenos;
 
 	private int fechaEstreno;
 	
@@ -90,11 +90,11 @@ public class Pelicula implements Serializable {
 		this.estatus = estatus;
 	}
 
-	public byte getEstrenos() {
+	public int getEstrenos() {
 		return estrenos;
 	}
 
-	public void setEstrenos(byte estrenos) {
+	public void setEstrenos(int estrenos) {
 		this.estrenos = estrenos;
 	}
 

@@ -39,4 +39,15 @@ public class CategoriaDaoImplMy87 implements CategoriaDao{
 		crepo.delete(categoria);
 	}
 
+	@Override
+	public Categoria insertOne(Categoria categoria) {
+		// TODO Auto-generated method stub
+		try {
+			return crepo.save(categoria);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
 }

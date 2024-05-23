@@ -243,6 +243,10 @@ function esquema() {
             
                 <thead >
                     <tr>
+                        <td scope="col" colspan="8"> <button class="edit-button" >añadir Peliculas</button></td>
+                        
+                    </tr>
+                    <tr>
                         <th scope="col">Id Pelicula</th>
                         <th scope="col">Nombre </th>
                         <th scope="col">Estreno </th>
@@ -282,6 +286,10 @@ function esquema() {
             <caption>Lista de Categorias</caption>
             
                 <thead >
+                    <tr>
+                        <td scope="col" colspan="4"> <button class="edit-button" onclick="feañadirCat()">añadir Categoria</button></td>
+                        
+                    </tr>
                     <tr>
                         <th scope="col">Id Categoria </th>
                         <th scope="col">Nombre </th>
@@ -579,9 +587,92 @@ function actualizarIcono(guardado) {
         icono.classList.add("fa-regular");
     }
 }
+let bcat=document.getElementById("bcat");
 function fañadirCat() {
     contPeliculas.style.display="none";
     contCategorias.style.display="none";
-
     document.getElementById("form_publicarCt").style.display = "block";
+    bcat.onclick=añadirCategoriavp;
+}
+function feañadirCat() {
+    document.getElementById("tablaPeliculas").style.display = "none";
+    document.getElementById("form_publicarCt").style.display = "block";
+    bcat.onclick=añadirCategoriaEsq;
+    
+}
+function añadirCategoriaEsq() {
+    const nombreCat = document.getElementById("nombreNewCat").value;
+
+    const data = {
+        nombre: nombreCat
+    };
+
+    fetch("http://localhost:8084/categoria/alta", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        // Verificar si la inserción fue exitosa
+        if (result && result.idCategoria) {
+            alert("Categoría añadida con éxito");
+            // Limpiar el formulario después de la inserción exitosa
+            document.getElementById("nombreNewCat").value = '';
+            cargarCategorias();
+            esquema();
+            document.getElementById("form_publicarCt").style.display = "none";
+
+        } else {
+            // Mostrar mensaje de error si la inserción falla
+            alert("Error al añadir la categoría");
+        }
+    })
+    .catch(error => {
+        // Capturar y manejar cualquier error de red u otro error
+        console.error("Error:", error);
+        alert("Error al añadir la categoría");
+    });
+}
+function añadirCategoriavp() {
+    const nombreCat = document.getElementById("nombreNewCat").value;
+
+    const data = {
+        nombre: nombreCat
+    };
+
+    fetch("http://localhost:8084/categoria/alta", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        // Verificar si la inserción fue exitosa
+        if (result && result.idCategoria) {
+            alert("Categoría añadida con éxito");
+            // Limpiar el formulario después de la inserción exitosa
+            document.getElementById("nombreNewCat").value = '';
+            cargarCategorias();
+           window.location.href="index.html"
+            document.getElementById("form_publicarCt").style.display = "none";
+
+        } else {
+            // Mostrar mensaje de error si la inserción falla
+            alert("Error al añadir la categoría");
+        }
+    })
+    .catch(error => {
+        // Capturar y manejar cualquier error de red u otro error
+        console.error("Error:", error);
+        alert("Error al añadir la categoría");
+    });
+}
+function cancelarCat() {
+    document.getElementById("tablaPeliculas").style.display = "block";
+    document.getElementById("form_publicarCt").style.display = "none";
 }

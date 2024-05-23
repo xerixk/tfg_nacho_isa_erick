@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pelicula.model.entidades.EstatusPelicula;
 import pelicula.model.entidades.Pelicula;
 import pelicula.model.repository.PeliculaRepository;
 
@@ -57,6 +58,21 @@ public class PeliculaDaoImplMy8 implements PeliculaDao{
 	@Override
 	public void deletePelicula(int idPelicula) {
 		prepo.deleteById(idPelicula);
+	}
+
+	@Override
+	public Pelicula insertOne(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		try {
+			pelicula.setDestacado(0);
+			pelicula.setEstatus(EstatusPelicula.PUBLICADA);
+			pelicula.setEstrenos(0);
+			return prepo.save(pelicula);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+	        return null;
+		}
 	}
 
 	

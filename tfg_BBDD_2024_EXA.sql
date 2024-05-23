@@ -163,22 +163,3 @@ INSERT INTO DatosBancarios (username, nombre_titular, numero_tarjeta, fecha_expi
 create user if not exists uvacantes_2024 identified by 'uvacantes';
 grant all privileges on vacantes_BBDD_2024_EXA.* to uvacantes_2024;
 
-SELECT peliculas.*
-FROM peliculas
-
-JOIN tarifas  ON peliculas.id_tarifa = tarifas.id_tarifa
-WHERE tarifas.nombre = 'Tarifa Basic';
-
-SELECT peliculas.* FROM peliculas JOIN usuarios ON peliculas.id_tarifa = usuarios.id_tarifa WHERE usuarios.username = 'cliente2' AND (peliculas.id_tarifa = usuarios.id_tarifa OR (peliculas.id_tarifa <= usuarios.id_tarifa AND peliculas.id_tarifa >= 1));
-
-SELECT peliculas.*
-FROM peliculas
-JOIN usuarios ON peliculas.id_tarifa <= usuarios.id_tarifa
-WHERE usuarios.username = 'Xerixk';
-
-
-SELECT peliculas.*
-FROM Guardar
-JOIN Usuarios ON Guardar.username = Usuarios.username
-JOIN Peliculas ON Guardar.id_Pelicula = Peliculas.id_pelicula
-WHERE Usuarios.username = 'cliente';
