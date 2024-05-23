@@ -144,11 +144,12 @@ footer{
     width: 70%;
     height: auto;
     padding: 20px;
+   
 }
 
 #verPeli p{
     margin: 10px;
-    width: 50%;
+    
 }
 
 #verPeli img{
@@ -295,4 +296,7 @@ font-size: 50px;
 .cancelarCat:hover{
     background-color: #f12819;
 
+}
+#form_addMovie{
+    display: none;
 }

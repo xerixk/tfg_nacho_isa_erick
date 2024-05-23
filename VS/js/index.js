@@ -616,22 +616,18 @@ function añadirCategoriaEsq() {
     })
     .then(response => response.json())
     .then(result => {
-        // Verificar si la inserción fue exitosa
         if (result && result.idCategoria) {
             alert("Categoría añadida con éxito");
-            // Limpiar el formulario después de la inserción exitosa
             document.getElementById("nombreNewCat").value = '';
             cargarCategorias();
             esquema();
             document.getElementById("form_publicarCt").style.display = "none";
 
         } else {
-            // Mostrar mensaje de error si la inserción falla
             alert("Error al añadir la categoría");
         }
     })
     .catch(error => {
-        // Capturar y manejar cualquier error de red u otro error
         console.error("Error:", error);
         alert("Error al añadir la categoría");
     });
@@ -652,22 +648,18 @@ function añadirCategoriavp() {
     })
     .then(response => response.json())
     .then(result => {
-        // Verificar si la inserción fue exitosa
         if (result && result.idCategoria) {
             alert("Categoría añadida con éxito");
-            // Limpiar el formulario después de la inserción exitosa
             document.getElementById("nombreNewCat").value = '';
             cargarCategorias();
            window.location.href="index.html"
             document.getElementById("form_publicarCt").style.display = "none";
 
         } else {
-            // Mostrar mensaje de error si la inserción falla
             alert("Error al añadir la categoría");
         }
     })
     .catch(error => {
-        // Capturar y manejar cualquier error de red u otro error
         console.error("Error:", error);
         alert("Error al añadir la categoría");
     });
@@ -675,4 +667,28 @@ function añadirCategoriavp() {
 function cancelarCat() {
     document.getElementById("tablaPeliculas").style.display = "block";
     document.getElementById("form_publicarCt").style.display = "none";
+}
+function fañadirpeli() {
+    contPeliculas.style.display="none";
+    contCategorias.style.display="none";
+    document.getElementById("form_addMovie").style.display = "block";
+    let select= document.getElementById("select");
+
+  
+    fetch(urlcat)
+    .then(res => res.json())
+    .then(cat => {
+        cat.forEach(categorias => {
+                select.innerHTML+=`<option value=${categorias.idCategoria}>${categorias.nombre}</option>`
+        });
+    });
+    
+    
+}
+
+
+function añadir(){
+
+    fetch("http://localhost:8084/pelicula/alta")
+
 }
