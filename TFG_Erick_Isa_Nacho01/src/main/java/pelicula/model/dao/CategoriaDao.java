@@ -11,4 +11,6 @@ public interface CategoriaDao {
 	Categoria findById(int idCategoria);
 	void deleteCategoria(int idCategoria);
 	Categoria insertOne(Categoria categoria);
+
+	Categoria modificarOne(Categoria categoria);
 }

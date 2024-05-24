@@ -56,5 +56,6 @@ public class CategoriaRestController {
 	                             .body("Error al insertar la categoría en la base de datos.");
 	    }
 	}
+	
 
 }

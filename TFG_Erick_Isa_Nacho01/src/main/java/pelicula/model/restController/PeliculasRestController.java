@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import pelicula.model.dao.PeliculaDao;
+import pelicula.model.dao.TarifaDao;
 import pelicula.model.entidades.Categoria;
 import pelicula.model.entidades.Pelicula;
+import pelicula.model.entidades.Tarifa;
 import pelicula.model.repository.PeliculaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ public class PeliculasRestController {
 	
 	@Autowired
 	PeliculaDao pdao;
+	@Autowired
+	TarifaDao tdao;
 	
 	@GetMapping("/todas")
 	public List<Pelicula> todas(){
@@ -75,6 +79,12 @@ public class PeliculasRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> alta(@RequestBody Pelicula pelicula) {
 	    try {
+	        System.out.println("Categoria ID recibido: " + pelicula.getCategoria());
+
+	    	Tarifa tarifa=tdao.findById(pelicula.getTarifa().getIdTarifa());
+	    	if (tarifa == null) {
+                return ResponseEntity.badRequest().body("La tarifa no puede ser nula.");
+            }
 	        Pelicula pel = pdao.insertOne(pelicula);
 	        if (pel != null) {
 	            return ResponseEntity.ok(pel);

@@ -52,6 +52,8 @@ public class Pelicula implements Serializable {
 
 	@Lob
 	private String reparto;
+	
+	private String video;
 
 	//bi-directional many-to-one association to Guardar
 	
@@ -62,7 +64,15 @@ public class Pelicula implements Serializable {
     @JoinColumn(name = "id_Categoria", referencedColumnName = "id_categoria")
 	private Categoria categoria;
 	
-	 @ManyToOne(fetch = FetchType.LAZY)
+	 public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	    @JoinColumn(name = "id_tarifa", referencedColumnName = "id_tarifa")
 	    private Tarifa tarifa;
 

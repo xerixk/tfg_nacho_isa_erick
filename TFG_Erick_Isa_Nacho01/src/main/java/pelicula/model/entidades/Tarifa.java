@@ -38,12 +38,19 @@ public class Tarifa implements Serializable{
     public Tarifa() {
 		super();
 	}
+    
 
-	public Tarifa(String nombre, double precio) {
+	public Tarifa(Integer idTarifa, String nombre, double precio) {
 		super();
+		this.idTarifa = idTarifa;
 		this.nombre = nombre;
 		this.precio = precio;
 	}
+	  
+    public Tarifa(int idTarifa) {
+        this.idTarifa = idTarifa;
+    }
+
 
 	// Getters y setters
     public Integer getIdTarifa() {

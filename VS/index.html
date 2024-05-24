@@ -45,51 +45,56 @@
             </div>
             <div class="button-group">
                 <button  id="bcat">Añadir Categoría</button>
-                <button class="cancelarCat"  onclick="cancelarCat()">Cancelar</button>
+                <button class="cancelarCat" id="cancelarCat" >Cancelar</button>
             </div>
             
         </div>
         <div id="contenedorPelis">
-            <div class="admin pp" id="cont_pelis" onclick="fañadirpeli()">
+            <div class="admin pp" id="cont_pelis" onclick="fañadirpeliVP()">
                 <p id="mas">+</p>
             </div>
         </div>
-        <div class="form-container" id="form_addMovie">
+        <div class="form-containerPel" id="form_addMovie">
             <h2>Añadir Nueva Película</h2>
             <form id="addMovieForm">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombrePelicula" name="nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" required></textarea>
+                    <textarea id="descripcionPelicula" name="descripcion" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="fechaEstreno">Fecha de Estreno:</label>
-                    <input type="number" id="fechaEstreno" name="fechaEstreno" required>
+                    <input type="number" id="fechaEstrenoPelicula" name="fechaEstreno" required>
                 </div>
                 <div class="form-group">
                     <label for="duracion">Duración (minutos):</label>
-                    <input type="number" id="duracion" name="duracion" required>
+                    <input type="number" id="duracionPelicula" name="duracion" required>
                 </div>
                
                 <div class="form-group">
                     <label for="imagen">URL de la Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" required>
+                    <input type="file" id="imagenPelicula" name="imagen" required>
                 </div>
                 <div class="form-group">
                     <label for="reparto">Reparto:</label>
-                    <textarea id="reparto" name="reparto" required></textarea>
+                    <textarea id="repartoPelicula" name="reparto" required></textarea>
                 </div>
-                <div class="form-group" id="tarifaPel"> 
-                    <select name="tarifas" id="select"></select>
+                <div class="form-group" > 
+                    <label for="categoria">Categoría:</label>
+                    <select name="categorias" id="categoriaPelicula" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="tarifa">Tarifas:</label>
+                    <div class="radio-group" id="checkPeliculaTarifa"></div>
                 </div>
 
 
                 <div class="button-group">
-                    <button type="submit" onclick="añadir()">Añadir Película</button>
-                    <button type="button" class="delete-button" onclick="cancelar()">Cancelar</button>
+                    <button type="button"class="edit-button"  id="bpeli">Añadir Película</button>
+                    <button type="button" class="delete-button" id="cnPeli" >Cancelar</button>
                 </div>
             </form>
         </div>

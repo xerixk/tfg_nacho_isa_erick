@@ -299,4 +299,19 @@ font-size: 50px;
 }
 #form_addMovie{
     display: none;
+    color: #000000;
+}
+.form-containerPel{
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+#añadirCatTable:disabled{
+    background-color: #83da86;
+}
+#añadirPeliTable:disabled{
+    background-color: #83da86;
 }

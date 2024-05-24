@@ -50,4 +50,19 @@ public class CategoriaDaoImplMy87 implements CategoriaDao{
 		}
 	}
 
+	@Override
+	public Categoria modificarOne(Categoria categoria) {
+		// TODO Auto-generated method stub
+		try {
+			if (findById(categoria.getIdCategoria())!=null) {
+				return crepo.save(categoria);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
 }
