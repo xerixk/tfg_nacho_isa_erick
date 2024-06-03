@@ -111,7 +111,6 @@ function cargarPeliculas() {
             });
         });
     } else if (idPerfil === "2") {
-        // Si el perfil es 2, hacer una llamada para obtener las películas del usuario
         let user = sessionStorage.getItem("username");
         fetch(`http://localhost:8084/pelicula/todasPorUser/${user}`)
             .then(res => res.json())
@@ -223,15 +222,16 @@ function busq_nombre() {
 let contCategorias=document.getElementById("contenedor");
 let contPeliculas=document.getElementById("contenedorPelis");
 
+let tablaPeliculas = document.getElementById("tablaPeliculas");
+let tablaCategorias = document.getElementById("tablaCategorias");
 function esquema() {
+    document.getElementById("form_addMovie").style.display = "none";
     let esquema= document.getElementById("esquema");
     let vPrevia= document.getElementById("vPrevia");
     contPeliculas.style.display="none";
     esquema.style.display="none";
     vPrevia.style.display="block";
     contCategorias.style.display="none";
-    let tablaPeliculas = document.getElementById("tablaPeliculas");
-    let tablaCategorias = document.getElementById("tablaCategorias");
     tablaPeliculas.style.display = "block";
     tablaCategorias.style.display = "block";
     fetch("http://localhost:8084/pelicula/todas")
@@ -243,7 +243,12 @@ function esquema() {
             
                 <thead >
                     <tr >
-                        <td scope="col" colspan="8"> <button class="edit-button" onclick="fañadirpeliEsq()" id="añadirPeliTable">añadir Peliculas</button></td>
+                        <td scope="col" colspan="8">
+                            <button type="button" class="buttonAdd" onclick="fañadirpeliEsq()" id="añadirPeliTable">
+                            <span class="button__text" onclick="feañadirCat()">Añadir Pelicula</span>
+                            <span class="button__icon" onclick="feañadirCat()"><svg onclick="feañadirCat()" class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                            </button> 
+                        </td>
                         
                     </tr>
                     <tr>
@@ -265,8 +270,13 @@ function esquema() {
                             <td>${pelicula.duracion} min</td>
                             <td>${pelicula.categoria ? pelicula.categoria.nombre : 'N/A'}</td>
                             <td>${pelicula.tarifa ? pelicula.tarifa.nombre : 'N/A'}</td>
-                            <td><button class="edit-button">Editar</button></td>
-                            <td><button class="delete-button" onclick="eliminarPeli(${pelicula.idPelicula})">Eliminar</button></td>
+                            <td><button class="edit-button Btn" onclick="formEditPeli(${pelicula.idPelicula})">Editar<svg class="svg" viewBox="0 0 512 512">
+                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg></button></td>
+                            <td>
+                            <button type="button" class="buttonDelete" onclick="eliminarPeli(${pelicula.idPelicula})">
+                            <span class="button__text">Eliminar</span>
+                            <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="512" viewBox="0 0 512 512" height="512" class="svg"><title></title><path style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"></path><line y2="112" y1="112" x2="432" x1="80" style="stroke:#323232;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></line><path style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"></path><line y2="400" y1="176" x2="256" x1="256" style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line><line y2="400" y1="176" x2="192" x1="184" style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line><line y2="400" y1="176" x2="320" x1="328" style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line></svg></span>
+                          </button>                            </td>
                         </tr>
                     `).join('')}
                 </tbody>
@@ -287,8 +297,13 @@ function esquema() {
             
                 <thead >
                     <tr >
-                        <td scope="col" colspan="4" > <button class="edit-button" onclick="feañadirCat()" id="añadirCatTable">añadir Categoria</button></td>
-                        
+                        <td scope="col" colspan="4" > 
+                            <button type="button" class="buttonAdd" onclick="feañadirCat()" id="añadirCatTable">
+                            <span class="button__text" onclick="feañadirCat()">Añadir Categoria</span>
+                            <span class="button__icon" onclick="feañadirCat()"><svg onclick="feañadirCat()" class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                            </button> 
+                        </td>
+                       
                     </tr>
                     <tr>
                         <th scope="col">Id Categoria </th>
@@ -301,8 +316,14 @@ function esquema() {
                         <tr>
                             <td>${categoria.idCategoria}</td>
                             <td>${categoria.nombre}</td>
-                            <td><button class="edit-button">Editar</button></td>
-                            <td><button class="delete-button" onclick="eliminarCategoria(${categoria.idCategoria})">Eliminar</button></td>
+                            <td><button class="edit-button Btn" onclick="formEditarCategoria(${categoria.idCategoria})">Editar <svg class="svg" viewBox="0 0 512 512">
+                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg></button></td>
+                            <td>
+                            <button type="button" class="buttonDelete" onclick="eliminarCategoria(${categoria.idCategoria})">
+  <span class="button__text">Eliminar</span>
+  <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="512" viewBox="0 0 512 512" height="512" class="svg"><title></title><path style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"></path><line y2="112" y1="112" x2="432" x1="80" style="stroke:#323232;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></line><path style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"></path><line y2="400" y1="176" x2="256" x1="256" style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line><line y2="400" y1="176" x2="192" x1="184" style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line><line y2="400" y1="176" x2="320" x1="328" style="fill:none;stroke:#323232;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line></svg></span>
+</button>
+                        </td>
                         </tr>
                     `).join('')}
                 </tbody>
@@ -325,8 +346,7 @@ function eliminarCategoria(id) {
         .then(response => {
             if (response.status === 204) {
                 alert('Categoria eliminada con éxito');
-                // Actualizar la lista de películas o recargar la página
-                esquema();  // O cualquier función que refresque la lista
+                esquema();
             } else {
                 alert('Error al eliminar la Categoria');
             }
@@ -346,8 +366,7 @@ function eliminarPeli(id) {
         .then(response => {
             if (response.status === 204) {
                 alert('Película eliminada con éxito');
-                // Actualizar la lista de películas o recargar la página
-                esquema();  // O cualquier función que refresque la lista
+                esquema();  
             } else {
                 alert('Error al eliminar la película');
             }
@@ -419,81 +438,6 @@ function obtenerUsername() {
 }
 }
 
-function inicioSesion() {
-    let userInput = document.getElementById("user").value;
-    let passInput = document.getElementById("pass").value;
-
-    if (userInput.trim() === "" || passInput.trim() === "") {
-        alert("Por favor ingresa tu nombre de usuario y contraseña.");
-        return;
-    }
-
-    var datosInicioSesion = {
-        "username": userInput,
-        "password": passInput,
-    };
-
-    fetch("http://localhost:8084/usuarios/login", {
-        method: 'POST',
-        headers: {
-            'accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datosInicioSesion)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud de inicio de sesión.');
-        }
-        return response.json();
-    })
-    .then(usuario => {
-       
-            sessionStorage.setItem("username", usuario.username);
-            sessionStorage.setItem("idPerfil", usuario.idPerfil);
-            window.location.href = "index.html";    
-       
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-function registrar() {
-    var username = document.getElementById("username").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    var nombre = document.getElementById("nombre").value;
-    var apellidos = document.getElementById("apellido").value;
-
-    var usuario = {
-        "username": username,
-        "email": email,
-        "password": password,
-        "nombre": nombre,
-        "apellidos": apellidos
-    };
-
-    fetch(`http://localhost:8084/usuarios/alta`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(usuario)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud de registro.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Usuario registrado:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
 
 function estaGuardada(user, peliculaId) {
     return new Promise((resolve, reject) => {
@@ -594,7 +538,8 @@ function fañadirCat() {
     contCategorias.style.display="none";
     document.getElementById("form_publicarCt").style.display = "block";
     bcat.onclick=añadirCategoriavp;
-    cancesq.onclick=cancelarCatVP
+    cancesq.onclick=cancelarCatVP;
+    document.getElementById("nombreNewCat").value="";
 }
 function feañadirCat() {
     document.getElementById("tablaPeliculas").style.display = "none";
@@ -602,7 +547,8 @@ function feañadirCat() {
     document.getElementById("añadirCatTable").style.cursor="not-allowed";
     document.getElementById("form_publicarCt").style.display = "block";
     bcat.onclick=añadirCategoriaEsq;
-    cancesq.onclick=cancelarCatEsq
+    cancesq.onclick=cancelarCatEsq;
+    document.getElementById("nombreNewCat").value="";
     
 }
 function añadirCategoriaEsq() {
@@ -700,70 +646,68 @@ function fañadirpeliVP() {
     contPeliculas.style.display="none";
     contCategorias.style.display="none";
     document.getElementById("form_addMovie").style.display = "block";
-    let select= document.getElementById("categoriaPelicula");
+    let selectPel= document.getElementById("categoriaPelicula");
     let check= document.getElementById("checkPeliculaTarifa");
     btPel.onclick=añadirPeliculaVP;
     canPeli.onclick=cancelarPeliVP;
     
 check.innerHTML='';
-  
-    fetch(urlcat)
+selectPel.innerHTML='';
+document.getElementById('nombrePelicula').value = "";
+document.getElementById('descripcionPelicula').value = "";
+document.getElementById('fechaEstrenoPelicula').value = "";
+document.getElementById('duracionPelicula').value = "";
+document.getElementById('imagenPelicula').value = "";
+document.getElementById('videoPelicula').value = "";
+document.getElementById('repartoPelicula').value = "";
+
+    fetch('http://localhost:8084/categoria/todas')
     .then(res => res.json())
     .then(cat => {
-        cat.forEach(categorias => {
-                select.innerHTML+=`<option value=${categorias.idCategoria}>${categorias.nombre}</option>`
+
+       
+
+        if (cat.length > 0) {
+        cat.forEach(categoria => {
+            let option = document.createElement('option');
+            option.value = categoria.idCategoria;
+            option.textContent = categoria.nombre;
+            selectPel.appendChild(option);
         });
+    } else {
+        let option = document.createElement('option');
+        option.textContent = 'No hay categorías disponibles';
+        selectPel.appendChild(option);
+        selectPel.disabled = true; 
+    }
+})
+.catch(error => {
+    console.error('Error al obtener categorías:', error);
+    let option = document.createElement('option');
+    option.textContent = 'Error al cargar categorías';
+    selectPel.appendChild(option);
+    selectPel.disabled = true; 
     });
 
     fetch(`http://localhost:8084/tarifa/todas`)
     .then(res => res.json())
     .then(tar => {
         tar.forEach(tarifas => {
-                check.innerHTML+=` <label><input type="radio" name="tarifa" value="${tarifas.idTarifa}">${tarifas.nombre}</label>`
+                check.innerHTML+=`
+                <input type="radio" name="tarifa" value="${tarifas.idTarifa}" id="${tarifas.nombre}">
+                <label for="${tarifas.nombre}">${tarifas.nombre}</label>`
         });
     });
     
     
 }
-
-function fañadirpeliEsq() {
-     document.getElementById("tablaCategorias").style.display = "none";
-     document.getElementById("form_addMovie").style.display = "block";
-    canPeli.onclick=cancelarPeliEsq
-    let select= document.getElementById("categoriaPelicula");
-    let check= document.getElementById("checkPeliculaTarifa");
-    btPel.onclick=añadirPeliculaVP;
-    document.getElementById("añadirPeliTable").disabled=true;
-    document.getElementById("añadirPeliTable").style.cursor="not-allowed";
-    
-check.innerHTML='';
-  
-    fetch(urlcat)
-    .then(res => res.json())
-    .then(cat => {
-        cat.forEach(categorias => {
-                select.innerHTML+=`<option value=${categorias.idCategoria}>${categorias.nombre}</option>`
-        });
-    });
-
-    fetch(`http://localhost:8084/tarifa/todas`)
-    .then(res => res.json())
-    .then(tar => {
-        tar.forEach(tarifas => {
-                check.innerHTML+=` <label><input type="radio" name="tarifa" value="${tarifas.idTarifa}">${tarifas.nombre}</label>`
-        });
-    });
-    
-    
-}
-
 function añadirPeliculaVP() {
-    document.getElementById("añadirPeliTable").style.display = "block";
-
+    
     let nombre = document.getElementById("nombrePelicula").value;
     let descripcion = document.getElementById("descripcionPelicula").value;
     let reparto = document.getElementById("repartoPelicula").value;
     let imagen = document.getElementById("imagenPelicula").value;
+    let video = document.getElementById("videoPelicula").value;
     let categoriaId = document.getElementById("categoriaPelicula").value;
     let duracion = document.getElementById("duracionPelicula").value;
     let fechaEstreno = document.getElementById("fechaEstrenoPelicula").value;
@@ -771,6 +715,8 @@ function añadirPeliculaVP() {
 
     let imagenNombre="";
     imagenNombre=imagen.substring(imagen.lastIndexOf("\\") + 1);
+    let videoNombre="";
+    videoNombre=video.substring(video.lastIndexOf("\\") + 1);
     let pelicula = {
         'nombre': nombre,
         'descripcion': descripcion,
@@ -779,7 +725,95 @@ function añadirPeliculaVP() {
         'categoria': categoriaId,
         'duracion': duracion,
         'fechaEstreno': fechaEstreno,
-        'tarifa':tarifaId
+        'tarifa':tarifaId,
+        'video': videoNombre
+    };
+    fetch("http://localhost:8084/pelicula/alta", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pelicula)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Película agregada correctamente.");
+           window.location.href="index.html"
+        } else {
+            alert("Error al agregar la película.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Error al agregar la película.");
+    });
+}
+
+function fañadirpeliEsq() {
+     document.getElementById("tablaCategorias").style.display = "none";
+     document.getElementById("form_addMovie").style.display = "block";
+    canPeli.onclick=cancelarPeliEsq
+    let select= document.getElementById("categoriaPelicula");
+    let check= document.getElementById("checkPeliculaTarifa");
+    btPel.onclick=añadirPeliculaEsq;
+    document.getElementById("añadirPeliTable").disabled=true;
+    document.getElementById("añadirPeliTable").style.cursor="not-allowed";
+    document.getElementById("nombrePelicula").value="";
+document.getElementById("descripcionPelicula").value="";
+document.getElementById("repartoPelicula").value="";
+document.getElementById("imagenPelicula").value="";
+document.getElementById("videoPelicula").value="";
+document.getElementById("duracionPelicula").value="";
+document.getElementById("fechaEstrenoPelicula").value="";
+    
+check.innerHTML='';
+  
+    fetch(urlcat)
+    .then(res => res.json())
+    .then(cat => {
+        cat.forEach(categorias => {
+                select.innerHTML+=`<option value=${categorias.idCategoria}>${categorias.nombre}</option>`
+        });
+    });
+
+    fetch(`http://localhost:8084/tarifa/todas`)
+    .then(res => res.json())
+    .then(tar => {
+        tar.forEach(tarifas => {
+                check.innerHTML+=` <label><input type="radio" name="tarifa" value="${tarifas.idTarifa}">${tarifas.nombre}</label>`
+        });
+    });
+    
+    
+}
+
+function añadirPeliculaEsq() {
+    document.getElementById("añadirPeliTable").style.display = "block";
+
+    let nombre = document.getElementById("nombrePelicula").value;
+    let descripcion = document.getElementById("descripcionPelicula").value;
+    let reparto = document.getElementById("repartoPelicula").value;
+    let imagen = document.getElementById("imagenPelicula").value;
+    let video = document.getElementById("videoPelicula").value;
+    let categoriaId = document.getElementById("categoriaPelicula").value;
+    let duracion = document.getElementById("duracionPelicula").value;
+    let fechaEstreno = document.getElementById("fechaEstrenoPelicula").value;
+    let tarifaId =parseInt( document.querySelector('input[name="tarifa"]:checked').value);
+
+    let imagenNombre="";
+    imagenNombre=imagen.substring(imagen.lastIndexOf("\\") + 1);
+    let videoNombre="";
+    videoNombre=video.substring(video.lastIndexOf("\\") + 1);
+    let pelicula = {
+        'nombre': nombre,
+        'descripcion': descripcion,
+        'reparto': reparto,
+        'imagen': imagenNombre,
+        'categoria': categoriaId,
+        'duracion': duracion,
+        'fechaEstreno': fechaEstreno,
+        'tarifa':tarifaId,
+        'video': videoNombre
     };
 
     fetch("http://localhost:8084/pelicula/alta", {
@@ -791,12 +825,10 @@ function añadirPeliculaVP() {
     })
     .then(response => {
         if (response.ok) {
-            // La película se agregó correctamente
             alert("Película agregada correctamente.");
-            // Puedes redirigir a otra página o actualizar la lista de películas
-             window.location.href =`index.html`;
+            document.getElementById("form_addMovie").style.display = "none";            
+             esquema();
         } else {
-            // Hubo un error al agregar la película
             alert("Error al agregar la película.");
         }
     })
@@ -806,3 +838,232 @@ function añadirPeliculaVP() {
     });
 }
 
+let formEditCat=document.getElementById("formUpdcat");
+let formEditPelic=document.getElementById("formUpdPeli");
+
+function formEditarCategoria(idCat){
+tablaPeliculas.style.display="none"
+formEditCat.style.display="block"
+document.getElementById("añadirCatTable").disabled=true;
+    document.getElementById("añadirCatTable").style.cursor="not-allowed";
+
+    fetch(`http://localhost:8084/categoria/porId/${idCat}`)
+        .then(response => response.json())
+        .then(data => {
+            
+            document.getElementById('nombreModCat').value = data.nombre;
+            document.getElementById('aceptarModCat').onclick = function () {
+                aceptarModCate(data.idCategoria)
+            };
+            
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al cargar los detalles de la categoría');
+        });
+}
+
+function cancelarModCate() {
+    tablaPeliculas.style.display="block"
+formEditCat.style.display="none"
+document.getElementById("añadirCatTable").disabled=false;
+    document.getElementById("añadirCatTable").style.cursor="pointer";
+}
+function aceptarModCate(idCat) {
+    let nombreInpMod = document.getElementById('nombreModCat').value;
+    let data = {
+          nombre: nombreInpMod
+        };
+        fetch(`http://localhost:8084/categoria/actualizar/${idCat}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al actualizar la categoría');
+        }
+        return response.json();
+    })
+    .then(data => {
+        formEditCat.style.display="none"
+        alert('Categoría actualizada correctamente');
+        esquema();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al actualizar la categoría');
+    });
+}
+
+function formEditPeli(idPelic) {
+    tablaCategorias.style.display="none"
+    formEditPelic.style.display="block"
+    document.getElementById("añadirPeliTable").disabled=true;
+    document.getElementById("añadirPeliTable").style.cursor="not-allowed";
+
+    fetch(`http://localhost:8084/pelicula/verDescripcion/${idPelic}`)
+    .then(response => response.json())
+    .then(data => {
+
+       
+        let contImgDiv=document.getElementById("imagenUdPeli");
+        let contVidDiv=document.getElementById("contVideoUpdPeli");
+        let selectUpdPeli= document.getElementById("categoriaUpdPeli");
+        let tarifaUpdPeli= document.getElementById("tarifaUpdPeli");
+        contImgDiv.innerHTML = "";
+        contVidDiv.innerHTML = "";
+        selectUpdPeli.innerHTML = "";
+        tarifaUpdPeli.innerHTML = "";
+
+        document.getElementById('nombreUpdPeli').value = data.nombre;
+        document.getElementById('descripcionUpdPeli').value = data.descripcion;
+        document.getElementById('fechaEstrenoUpdPeli').value = data.fechaEstreno;
+        document.getElementById('duracionUpdPeli').value = data.duracion;
+
+        if (data.destacado) {
+            document.getElementById('destacadoUpdPeli1').checked = true;
+        } else {
+            document.getElementById('destacadoUpdPeli0').checked = true;
+        }
+        
+        if (!data.estreno) {
+            document.getElementById('estrenoUpdPeli0').checked = true;
+        } else {
+            document.getElementById('estrenoUpdPeli1').checked = true;
+        }
+
+        let imagen = document.createElement("img");
+        imagen.id="imgUpdImg";
+        imagen.src = 'img/' + data.imagen;
+        let fileImg= document.createElement("input")
+        fileImg.type="file";
+        fileImg.name="imagen";
+        fileImg.id="imagenUpdPeli";
+        contImgDiv.appendChild(imagen)
+        contImgDiv.appendChild(fileImg)
+        document.getElementById("repartoUpdPeli").value=data.reparto;
+
+        fetch(urlcat)
+        .then(res => res.json())
+        .then(cat => {
+            selectUpdPeli.innerHTML="";
+            cat.forEach(categorias => {
+                let option=document.createElement('option');
+                option.value=categorias.idCategoria;
+                option.textContent=categorias.nombre;
+                if (categorias.idCategoria === data.categoria.idCategoria) {
+                    option.selected=true;     
+                }
+                selectUpdPeli.appendChild(option);
+            });
+        });
+
+        fetch(`http://localhost:8084/tarifa/todas`)
+                .then(res => res.json())
+                .then(tar => {
+                    console.log('Tarifas:', tar); 
+                    tar.forEach(tarifas => {
+                        let radioInput= document.createElement('input');
+                        radioInput.type="radio";
+                        radioInput.name="tarifa";
+                        radioInput.value=tarifas.idTarifa;
+                        radioInput.id=tarifas.nombre;
+                        if (data.tarifa && data.tarifa.idTarifa===tarifas.idTarifa) {
+                            radioInput.checked=true;
+                        }
+                        let label = document.createElement('label');
+                        label.setAttribute('for', tarifas.nombre);
+                        label.textContent = tarifas.nombre;
+                        tarifaUpdPeli.appendChild(radioInput);
+                        tarifaUpdPeli.appendChild(label);
+                });
+            });
+
+        let videoUpd = document.createElement("video");
+        videoUpd.src = "videos/videoPrueba.mp4";
+        videoUpd.controls = true;
+        videoUpd.width = 300;
+        videoUpd.height = 150;
+
+        let fileVid= document.createElement("input")
+        fileVid.type="file";
+        fileVid.name="video";
+        fileVid.id="videoUpdPeli";
+        contVidDiv.appendChild(videoUpd)
+        contVidDiv.appendChild(fileVid)
+
+        document.getElementById('aceptarModPelii').onclick = function () {
+            aceptarModPelicula(data.idPelicula);
+        };
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al cargar los detalles de la Pelicula');
+    });
+
+}
+function cancelarModPeli() {
+    tablaCategorias.style.display="block"
+    formEditPelic.style.display="none"
+    document.getElementById("añadirPeliTable").disabled=false;
+    document.getElementById("añadirPeliTable").style.cursor="pointer";
+    
+}
+function aceptarModPelicula(idPelic) {
+    let nombreInpModPel = document.getElementById("nombreUpdPeli").value;
+    let descripcionInpModPel = document.getElementById("descripcionUpdPeli").value;
+    let fechaEstrInpModPel = document.getElementById("fechaEstrenoUpdPeli").value;
+    let duracionInpModPel = document.getElementById("duracionUpdPeli").value;
+    let destacadoInpModPel = document.querySelector('input[name="destacado"]:checked').value;
+    let esternoInpModPel = document.querySelector('input[name="estreno"]:checked').value;
+    let imagenInpModPel = document.getElementById('imagenUpdPeli').value; 
+    let repartoInpModPel = document.getElementById('repartoUpdPeli').value;
+    let categoriaInpModPel = document.getElementById('categoriaUpdPeli').value;
+    let tarifaInpModPel = parseInt(document.querySelector('input[name="tarifa"]:checked').value);
+    let videoInput = document.getElementById('videoUpdPeli').value; 
+    let imagenNombre="";
+    imagenNombre=imagenInpModPel.substring(imagenInpModPel.lastIndexOf("\\") + 1);
+    let videoNombre="";
+    videoNombre=videoInput.substring(videoInput.lastIndexOf("\\") + 1);
+    let data = {
+        nombre: nombreInpModPel,
+        descripcion: descripcionInpModPel,
+        fechaEstreno: fechaEstrInpModPel,
+        duracion: duracionInpModPel,
+        destacado: destacadoInpModPel,
+        estreno: esternoInpModPel,
+        imagen: imagenNombre,
+        reparto: repartoInpModPel,
+        categoria: categoriaInpModPel,
+        tarifa: tarifaInpModPel,
+        video: videoNombre
+    };
+
+        fetch(`http://localhost:8084/pelicula/actualizar/${idPelic}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar la película');
+            }
+            return response.json();
+        })
+        .then(data => {
+            formEditPelic.style.display = "none";
+            alert('Película actualizada correctamente');
+            esquema();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al actualizar la película');
+        });
+   
+}

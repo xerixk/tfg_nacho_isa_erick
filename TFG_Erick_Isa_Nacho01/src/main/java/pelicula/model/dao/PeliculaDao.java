@@ -15,5 +15,6 @@ public interface PeliculaDao {
 	List<Pelicula> findByUsername(String username);
 	void deletePelicula(int idPelicula);
 	Pelicula insertOne(Pelicula pelicula);
+	Pelicula modificarOne(Pelicula pelicula);
 
 }

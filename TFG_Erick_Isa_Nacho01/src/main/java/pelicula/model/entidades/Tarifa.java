@@ -34,17 +34,20 @@ public class Tarifa implements Serializable{
     
     private double precio;
     
+    private String descripcion;
+    
 
     public Tarifa() {
 		super();
 	}
     
 
-	public Tarifa(Integer idTarifa, String nombre, double precio) {
+	public Tarifa(Integer idTarifa, String nombre, double precio,String descripcion) {
 		super();
 		this.idTarifa = idTarifa;
 		this.nombre = nombre;
 		this.precio = precio;
+		this.descripcion=descripcion;
 	}
 	  
     public Tarifa(int idTarifa) {
@@ -53,11 +56,23 @@ public class Tarifa implements Serializable{
 
 
 	// Getters y setters
+    
     public Integer getIdTarifa() {
         return idTarifa;
     }
+    
 
-    public void setIdTarifa(Integer idTarifa) {
+    public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+	public void setIdTarifa(Integer idTarifa) {
         this.idTarifa = idTarifa;
     }
 
@@ -94,9 +109,12 @@ public class Tarifa implements Serializable{
 		return Objects.equals(idTarifa, other.idTarifa);
 	}
 
+
 	@Override
 	public String toString() {
-		return "Tarifa [idTarifa=" + idTarifa + ", nombre=" + nombre + ", precio=" + precio + "]";
+		return "Tarifa [idTarifa=" + idTarifa + ", nombre=" + nombre + ", precio=" + precio + ", descripcion="
+				+ descripcion + "]";
 	}
-    
+
+	
 }

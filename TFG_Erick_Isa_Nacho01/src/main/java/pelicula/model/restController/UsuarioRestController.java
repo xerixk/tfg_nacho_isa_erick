@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pelicula.model.dao.PerfilDao;
+import pelicula.model.dao.TarifaDao;
 import pelicula.model.dao.UsuarioDao;
 import pelicula.model.dto.UserDto;
 import pelicula.model.dto.UsuarioDto;
+import pelicula.model.entidades.Tarifa;
 import pelicula.model.entidades.Usuario;
+import pelicula.model.repository.TarifaRepository;
 import pelicula.model.repository.UsuarioRepository;
 
 @RestController
@@ -30,6 +33,8 @@ public class UsuarioRestController {
 	
 	@Autowired
 	private PerfilDao pdao;
+	@Autowired
+	private TarifaDao tdao;
 	
 	
 	
@@ -52,17 +57,35 @@ public class UsuarioRestController {
 	}
 	@PostMapping("/alta")
     public ResponseEntity<UsuarioDto> alta(@RequestBody UsuarioDto usuario) {
-        usuario.setFecha_Registro(new Date());
-        usuario.addPerfil(pdao.findById(2));
-        usuario.setEnabled(1);
+		
+		
+		try {
+	        usuario.setFecha_Registro(new Date());
+	        usuario.addPerfil(pdao.findById(2));
+	        usuario.setEnabled(1);
 
-        UsuarioDto savedUsuario = udao.insertOne(usuario);
+	        Tarifa tarifa = tdao.findById(usuario.getTarifa().getIdTarifa());
+	        if (tarifa == null) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	        }
 
-        if (savedUsuario != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuario);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+	        usuario.setTarifa(tarifa);
+	        UsuarioDto savedUsuario = udao.insertOne(usuario);
+	        if (savedUsuario != null) {
+	            return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuario);
+	        } else {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	        }
+
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
+
+       
+        
+
+
+       
     }
 
 }

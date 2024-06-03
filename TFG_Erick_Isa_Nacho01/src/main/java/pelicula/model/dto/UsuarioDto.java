@@ -6,6 +6,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import pelicula.model.entidades.Guardar;
 import pelicula.model.entidades.Perfil;
+import pelicula.model.entidades.Tarifa;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,9 +37,13 @@ public class UsuarioDto implements Serializable {
 	private String nombre;
 
 	private String password;
-	@OneToMany(mappedBy="usuario")
 	
+	@OneToMany(mappedBy="usuario")
 	private List<Guardar> guardars;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tarifa", referencedColumnName = "id_tarifa")
+	    private Tarifa tarifa;
 	
 	@ManyToMany
 	@JoinTable(
@@ -54,6 +59,31 @@ public class UsuarioDto implements Serializable {
 
 
 	public UsuarioDto() {
+	}
+	
+
+	public UsuarioDto(String username, String apellidos, String email, int enabled, Date fecha_Registro, String nombre,
+			String password, List<Guardar> guardars, Tarifa tarifa, List<Perfil> perfiles) {
+		super();
+		this.username = username;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.enabled = enabled;
+		this.fecha_Registro = fecha_Registro;
+		this.nombre = nombre;
+		this.password = password;
+		this.guardars = guardars;
+		this.tarifa = tarifa;
+		this.perfiles = perfiles;
+	}
+
+
+	public Tarifa getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(Tarifa tarifa) {
+		this.tarifa = tarifa;
 	}
 
 	public String getUsername() {
@@ -178,11 +208,12 @@ public class UsuarioDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [username=" + username + ", apellidos=" + apellidos + ", email=" + email + ", enabled="
+		return "UsuarioDto [username=" + username + ", apellidos=" + apellidos + ", email=" + email + ", enabled="
 				+ enabled + ", fecha_Registro=" + fecha_Registro + ", nombre=" + nombre + ", password=" + password
-				+ "]";
+				+ ", guardars=" + guardars + ", tarifa=" + tarifa + ", perfiles=" + perfiles + "]";
 	}
-	
+
+
 	
 	
 	

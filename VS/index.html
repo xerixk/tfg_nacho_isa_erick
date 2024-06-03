@@ -21,7 +21,13 @@
             <a id="nombre" class="nav-link user text-white">Bienvenid@ <span id="nombreUser"></span> </a>
             <a id="nombre" class="nav-link admin text-white">Admin</a>
             <hr>
-            <a onclick="cerrarSesion()" class="nav-link text-white" id="btn_sub">Cerrar Sesion</a>
+            <!-- <a onclick="cerrarSesion()" class="nav-link text-white" id="btn_sub">Cerrar Sesion</a> -->
+            <button type="button" onclick="cerrarSesion()" class="nav-link BtnOut">
+  
+                <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+                
+                <div class="text">Cerrar sesion</div>
+              </button>
         </div>
     </header>
     <section>
@@ -33,8 +39,15 @@
             </div>
         </div>
         <div id="contenedor">
-            <div id="cont_cat" class="admin" onclick="fañadirCat()">
-                <p id="adminCat">+</p>
+            <div id="cont_catAdd" class="admin" >
+                <!-- <p id="adminCat">+</p> -->
+                <button type="button" class="BtnAddCat" onclick="fañadirCat()">
+  
+                    <div class="signAddCat">+</div>
+                    
+                    <div class="textAddCat">Añadir Categoria</div>
+                  </button>
+                
             </div>
         </div>
         <div class="form-container" id="form_publicarCt">
@@ -50,8 +63,12 @@
             
         </div>
         <div id="contenedorPelis">
-            <div class="admin pp" id="cont_pelis" onclick="fañadirpeliVP()">
-                <p id="mas">+</p>
+            <div class="admin pp" id="cont_pelis">
+                <button type="button" class="BtnAddPeli" onclick="fañadirpeliVP()">
+                    <div class="signAddPeli">+</div>
+                    <div class="textAddPeli">Añadir Peliculas</div>
+                </button>
+               
             </div>
         </div>
         <div class="form-containerPel" id="form_addMovie">
@@ -67,7 +84,7 @@
                 </div>
                 <div class="form-group">
                     <label for="fechaEstreno">Fecha de Estreno:</label>
-                    <input type="number" id="fechaEstrenoPelicula" name="fechaEstreno" required>
+                    <input type="number" min="1900" max="2050" id="fechaEstrenoPelicula" name="fechaEstreno"  required>
                 </div>
                 <div class="form-group">
                     <label for="duracion">Duración (minutos):</label>
@@ -79,6 +96,10 @@
                     <input type="file" id="imagenPelicula" name="imagen" required>
                 </div>
                 <div class="form-group">
+                    <label for="video">URL del Video:</label>
+                    <input type="file" id="videoPelicula" name="video" required>
+                </div>
+                <div class="form-group">
                     <label for="reparto">Reparto:</label>
                     <textarea id="repartoPelicula" name="reparto" required></textarea>
                 </div>
@@ -86,12 +107,13 @@
                     <label for="categoria">Categoría:</label>
                     <select name="categorias" id="categoriaPelicula" required></select>
                 </div>
-                <div class="form-group">
-                    <label for="tarifa">Tarifas:</label>
+                <div>
+                    <p>Tarifas:</p>
+                    <br>
                     <div class="radio-group" id="checkPeliculaTarifa"></div>
                 </div>
 
-
+                <br>
                 <div class="button-group">
                     <button type="button"class="edit-button"  id="bpeli">Añadir Película</button>
                     <button type="button" class="delete-button" id="cnPeli" >Cancelar</button>
@@ -99,6 +121,85 @@
             </form>
         </div>
         <div id="pelicula"></div>
+        <div id="formUpdcat"  class="form-container">
+            <br>
+            <h2>Modificar Categoría</h2>
+            <br>
+            <form id="modificarCategoriaForm">
+                <div class="form-group">
+                    <label for="nombreModCat">Nombre:</label>
+                    <input type="text" id="nombreModCat" name="nombre" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="edit-button" id="aceptarModCat">Modificar Categoría</button>
+                    <button type="button" class="delete-button" id="cancelarModCat" onclick="cancelarModCate()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-container" id="formUpdPeli">
+            <h2>Actualizar Película</h2>
+                <div class="form-group">
+                    <label for="nombreUpdPeli">Nombre:</label>
+                    <input type="text" id="nombreUpdPeli" name="nombreP" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionUpdPeli">Descripción:</label>
+                    <textarea id="descripcionUpdPeli" name="descripcion" required>${data.descripcion}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fechaEstrenoUpdPeli">Fecha de Estreno:</label>
+                    <input type="number" id="fechaEstrenoUpdPeli" name="fechaEstreno" value="${data.fechaEstreno}" required>
+                </div>
+                <div class="form-group">
+                    <label for="duracionUpdPeli">Duración (minutos):</label>
+                    <input type="number" id="duracionUpdPeli" name="duracion" value="${data.duracion}" required>
+                </div>
+                <div>
+                    <p>Destacado:</p><br>
+                    <input type="radio" id="destacadoUpdPeli1" name="destacado" value="1" required>
+                    
+                    <label for="destacadoUpdPeli1">Destacar</label>
+                    <input type="radio" id="destacadoUpdPeli0" name="destacado" value="0" required>
+                    <label for="destacadoUpdPeli0">No Destacar</label>
+                </div>
+                <br>
+                <div>
+                    <p>Estreno:</p>
+                    <br>
+                    <input type="radio" id="estrenoUpdPeli1" name="estreno" value="1" required>
+                    <label for="estrenoUpdPeli1">Si</label>
+                    <input type="radio" id="estrenoUpdPeli0" name="estreno" value="0" required>
+                    <label for="estrenoUpdPeli0">No</label>
+                </div>
+                <br>
+                <div class="form-group" id="imagenUdPeli">
+                    <p>Imagen:</p>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label for="repartoUpdPeli">Reparto:</label>
+                    <textarea id="repartoUpdPeli" name="reparto" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="categoriaUpdPeli">Categoría:</label>
+                    <select name="categorias" id="categoriaUpdPeli" required></select>
+                </div>
+                <div>
+                    <p>Tarifas:</p>
+                    <br>
+                    <div class="radio-group" id="tarifaUpdPeli"></div>
+                </div>
+                <br>
+                <div class="form-group" id="contVideoUpdPeli">
+                    <p>URL del Video:</p>
+                    <br>
+                </div>
+                <br>
+                <div class="button-group">
+                    <button type="button" class="edit-button" id="aceptarModPelii">Actualizar Película</button>
+                    <button type="button" class="delete-button" onclick="cancelarModPeli()">Cancelar</button>
+                </div>
+        </div>
         <div id="tablaCategorias" style="display:none;"></div>
         <div id="tablaPeliculas" style="display:none;"></div>
         

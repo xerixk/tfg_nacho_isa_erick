@@ -47,14 +47,5 @@ public class GuardarDaoImplMy implements GuardarDao{
 	}
 
 	
-	/*@Override
-    public boolean deleteByUsuarioUsernameAndPeliculaIdPelicula(String username, Integer peliculaId) {
-        try {
-            grepo.deleteByUsuarioUsernameAndPeliculaIdPelicula(username, peliculaId);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }*/
 
 }

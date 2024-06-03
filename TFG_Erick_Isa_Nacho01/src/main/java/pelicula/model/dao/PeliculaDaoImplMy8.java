@@ -70,15 +70,11 @@ public class PeliculaDaoImplMy8 implements PeliculaDao{
 	public Pelicula insertOne(Pelicula pelicula) {
 		// TODO Auto-generated method stub
 		 
-		
-		
-
 		try {
 			
 			pelicula.setDestacado(0);
 			pelicula.setEstatus(EstatusPelicula.PUBLICADA);
 			pelicula.setEstrenos(0);
-			pelicula.setVideo(null);
 			return prepo.save(pelicula);
 			
 		} catch (Exception e) {
@@ -86,6 +82,18 @@ public class PeliculaDaoImplMy8 implements PeliculaDao{
 	        return null;
 		}
 	}
+	@Override
+    public Pelicula modificarOne(Pelicula pelicula) {
+        try {
+            if (findbyId(pelicula.getIdPelicula())!=null) {
+                return prepo.save(pelicula);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 	
 

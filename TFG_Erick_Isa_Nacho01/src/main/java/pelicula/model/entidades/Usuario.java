@@ -49,8 +49,8 @@ public class Usuario implements Serializable {
 	private List<Guardar> guardars;
 
 	//bi-directional many-to-many association to Perfile
-	 @OneToOne
-	    @JoinColumn(name = "id_tarifa", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tarifa", referencedColumnName = "id_tarifa")
 	    private Tarifa tarifa;
 	 
 	 @ManyToMany
@@ -65,6 +65,8 @@ public class Usuario implements Serializable {
 			)
 		private List<Perfil> perfiles;
 
+	 @OneToMany(mappedBy = "usuario")
+	    private List<DatosBancarios> datosBancarios;
 
 	public Usuario() {
 	}
@@ -153,6 +155,15 @@ public class Usuario implements Serializable {
 		if (perfiles == null)
 			perfiles = new ArrayList<>();
 		perfiles.remove(perfil);
+	}
+	
+
+	public List<DatosBancarios> getDatosBancarios() {
+		return datosBancarios;
+	}
+
+	public void setDatosBancarios(List<DatosBancarios> datosBancarios) {
+		this.datosBancarios = datosBancarios;
 	}
 
 	@Override

@@ -38,18 +38,23 @@ footer{
     grid-area: footer;
 
 }
-/* dfcnd */
+
 
 #img{
     width: 250px;
     height: 270px;
     border-radius: 6px;
 }
+.navbar-brand img {
+    max-height: 70px; /* Establece la altura máxima de la imagen */
+    width: 100px; /* Permite que el ancho se ajuste automáticamente */
+    margin-right: 10px; /* Añade un margen a la derecha para separar el logo de otros elementos */
+}
+
 
 #contenedorP{
     display: flex;
     flex-wrap: wrap;
-    /* width: 100%; */
     height: auto;
    
 }
@@ -83,14 +88,6 @@ footer{
     height: 265px;
 }
 
-/* #estrenos{
-    display: flex;
-    height: 400px;
-    margin: 0 auto;
-    align-items: center;
-    gap: 10px;
-
-} */
 
 #btn_sub{
     width: 120px;
@@ -127,7 +124,6 @@ footer{
 
 #titulo{
     font-size: 30px;
-    /* font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif"; */
     margin: 20px auto;
 }
 
@@ -139,8 +135,7 @@ footer{
 
 #imagen0{
     border-radius: 100%;
-    /* background-color: #fff;
-    background: linear-gradient(176deg, rgb(180, 33, 33) 0%, rgb(31, 43, 87) 98%, rgb(71, 71, 104) 99%, rgb(55, 74, 88) 100%); */
+
 }
 
 #oferta{
@@ -149,10 +144,7 @@ footer{
     height: 150px;
     color: white;
     padding: 20px;
-    /* background: rgb(10,0,203); */
     z-index: 1000;
-    /* font-family: "Graphik Web", "Tahoma", "Helvetica", "sans-serif"; */
-    /* background: radial-gradient(circle, rgba(10,0,203,1) 0%, rgba(0,0,0,1) 74%, rgba(76,47,184,1) 100%); */
 }
 
 #oferta p{
@@ -168,7 +160,6 @@ footer{
     cursor: pointer;
 }
 
-/* preguntas  */
 #estrenos {
     height: 380px;
     text-align: center;
@@ -184,10 +175,11 @@ background-color: #002b8f;
     width: 100%;
     border: none;
   
-    /* outline: none; */
     font-size: 25px;
   }
-  
+  nav{
+    background-color: #000000;
+  }
   .active,
   .collapsible:hover {
   color: rgb(190, 151, 216);
@@ -206,7 +198,6 @@ background-color: #002b8f;
   
   }
   
-/* Para dispositivos con un ancho máximo de 768px */
 @media only screen and (max-width: 768px) {
     #texto {
         width: 100%;
@@ -229,7 +220,6 @@ background-color: #002b8f;
 
 
 
-/* Para dispositivos con un ancho máximo de 576px */
 @media only screen and (max-width: 576px) {
     #titulo {
         font-size: 25px;
@@ -240,12 +230,5 @@ background-color: #002b8f;
     #oferta p {
         font-size: 18px;
     }
-    /* Ajuste del degradado para dispositivos más pequeños */
-    /* #oferta {
-        /* background: radial-gradient(
-            ellipse at center,
-            rgba(10, 0, 203, 1) 0%,
-            rgba(0, 0, 0, 1) 50%,
-            rgba(76, 47, 184, 1) 100%
-        ); */
+
     } 

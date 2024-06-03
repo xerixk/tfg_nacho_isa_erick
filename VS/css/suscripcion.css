@@ -14,17 +14,10 @@ body {
         "header header"
         "section section"
         "footer footer";
-        /* text-align: center; */
-        font-family: "Montserrat" ;
+    font-family: "Montserrat";
 }
 
-/* #logo{
-	margin: 0 auto;
-	color: white;
-	cursor: pointer;
-	padding: 10px;
-} */
-h1>img{
+h1 > img {
     height: 130px;
 }
 
@@ -34,109 +27,173 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-content: space-around;
     color: white;
 }
 
-section{
+section {
     grid-area: section;
     font-size: 25px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     color: white;
 }
-.elige{
+
+.elige {
     font-size: 50px;
 }
-#titulo_planes{
+
+#titulo_planes {
     width: 100%;
     height: 100px;
-    /* background-color: #11052e; */
-    margin: 40px;
-    text-align: center;
-    padding: 20px;
-}
-#titPlan{
-    height: 100px;
-    /* background-color: #1e0064; */
     margin: 40px;
     text-align: center;
     padding: 20px;
 }
 
-#titulo_planes > p{
+#titPlan {
+    height: 100px;
+    margin: 40px;
+    text-align: center;
+    padding: 20px;
+}
+
+#titulo_planes > p {
     margin: 0 auto;
 }
 
-
-footer{
+footer {
     grid-area: footer;
-    
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-content: space-around;
-   
     color: white;
 }
 
-#contenedor_planes{
+#contenedor_planes {
     display: flex;
     margin: 0 auto;
     width: 85%;
+    /* height: auto; */
     justify-content: space-evenly;
-}
-
-#planes {
-    background-color: rgb(58, 11, 113);
-    width: 100%; 
     text-align: center;
-    max-width: 400px; 
-    height: auto;
-    padding: 50px;
-    gap: 20px;
-    border-radius: 5px;
-    /* border: 1px solid white; */
-    border-radius: 15PX;
+}
+
+.card {
     position: relative;
+    width: 500px;
+    height: auto;
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 20px;
 }
 
-button {
-       border: none; 
-       color: white;
-       position: absolute;
-       bottom: -20px;
-       left: 50%;
-       transform: translateX(-50%);
-       padding: 10px 20px; 
-       cursor: pointer; 
-       border-radius: 5px; 
-       display: inline-block;
+.card:hover {
+    transform: translateY(-20px);
 }
 
+.card::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #ffbc00, #ff0058);
+    border-radius: 1.2em;
+}
 
-#detalles{
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ffbc00, #ff0058);
+    filter: blur(30px);
+}
+
+.card span {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    border-radius: 1em;
+}
+
+.card span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card .content {
+    position: relative;
+    padding: 10px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight:1; */
+    font-size: 20px;
+    flex-direction: column;
+}
+
+#detalles {
     display: none;
     margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: start;
 }
-#det{
+
+#det {
+    margin-bottom: 20px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
+.detalles.visible {
+    display: block;
+}
 
-.bot{
-    /* background-image: linear-gradient(to right, #007bff, #4ab2e2); */
+button {
+    border: none;
+    color: white;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bot {
     color: white;
     background-color: rgb(79, 0, 128);
     cursor: pointer;
 }
+#detalles ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+#detalles ul li {
+    margin-bottom: 10px;
+}
 
 @media screen and (max-width: 768px) {
-    /* Estilos para tablet */
     #contenedor_planes {
         flex-direction: column;
         align-items: center;
@@ -144,8 +201,7 @@ button {
 }
 
 @media screen and (max-width: 600px) {
-    /* Estilos para móvil */
-    h1>img {
+    h1 > img {
         height: 100px;
     }
 
@@ -153,166 +209,8 @@ button {
         font-size: 30px;
     }
 
-    #planes {
-        padding: 20px;
-    }
-
-    button {
-        bottom: -10px;
-    }
-}* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    height: 100vh;
-    background: linear-gradient(to right, #001c8c, #a01ab8);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 90px 1fr 150px;
-    grid-template-areas:
-        "header header"
-        "section section"
-        "footer footer";
-        /* text-align: center; */
-        font-family: "Montserrat" ;
-}
-
-/* #logo{
-	margin: 0 auto;
-	color: white;
-	cursor: pointer;
-	padding: 10px;
-} */
-h1>img{
-    height: 130px;
-}
-
-header {
-    grid-area: header;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
-    color: white;
-}
-
-section{
-    grid-area: section;
-    font-size: 25px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-}
-.elige{
-    font-size: 50px;
-}
-#titulo_planes{
-    width: 100%;
-    height: 100px;
-    /* background-color: #11052e; */
-    margin: 40px;
-    text-align: center;
-    padding: 20px;
-}
-#titPlan{
-    height: 100px;
-    /* background-color: #1e0064; */
-    margin: 40px;
-    text-align: center;
-    padding: 20px;
-}
-
-#titulo_planes > p{
-    margin: 0 auto;
-}
-
-
-footer{
-    grid-area: footer;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
-   
-    color: white;
-}
-
-#contenedor_planes{
-    display: flex;
-    margin: 0 auto;
-    width: 85%;
-    justify-content: space-evenly;
-}
-
-#planes {
-    background-color: rgb(58, 11, 113);
-    width: 100%; 
-    text-align: center;
-    max-width: 400px; 
-    height: auto;
-    padding: 50px;
-    gap: 20px;
-    border-radius: 5px;
-    /* border: 1px solid white; */
-    border-radius: 15PX;
-    position: relative;
-}
-
-button {
-       border: none; 
-       color: white;
-       position: absolute;
-       bottom: -20px;
-       left: 50%;
-       transform: translateX(-50%);
-       padding: 10px 20px; 
-       cursor: pointer; 
-       border-radius: 5px; 
-       display: inline-block;
-}
-
-
-#detalles{
-    display: none;
-    margin-top: 10px;
-}
-#det{
-    cursor: pointer;
-}
-
-
-.bot{
-    /* background-image: linear-gradient(to right, #007bff, #4ab2e2); */
-    color: white;
-    background-color: rgb(79, 0, 128);
-    cursor: pointer;
-}
-
-@media screen and (max-width: 768px) {
-    /* Estilos para tablet */
-    #contenedor_planes {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    /* Estilos para móvil */
-    h1>img {
-        height: 100px;
-    }
-
-    .elige {
-        font-size: 30px;
+    .card {
+        width: 100%;
     }
 
     #planes {

@@ -6,7 +6,8 @@ function irLog(){
 
 
 function irReg(){
-    window.location = "suscripcion.html";
+  window.location.href = "login.html?registro=true"
+
 }
 
 

@@ -32,4 +32,59 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function inicioSesion() {
+    let userInput = document.getElementById("user").value;
+    let passInput = document.getElementById("pass").value;
+
+    if (userInput.trim() === "" || passInput.trim() === "") {
+        alert("Por favor ingresa tu nombre de usuario y contraseña.");
+        return;
+    }
+
+    var datosInicioSesion = {
+        "username": userInput,
+        "password": passInput,
+    };
+
+    fetch("http://localhost:8084/usuarios/login", {
+        method: 'POST',
+        headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datosInicioSesion)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud de inicio de sesión.');
+        }
+        return response.json();
+    })
+    .then(usuario => {
+       
+            sessionStorage.setItem("username", usuario.username);
+            sessionStorage.setItem("idPerfil", usuario.idPerfil);
+            window.location.href = "index.html";    
+       
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function verSuscripcion() {
+    
+    let usernameReg=document.getElementById("username").value;
+    let emailReg =document.getElementById("email").value;
+    let passwordReg=document.getElementById("password").value;
+    let nombreReg=document.getElementById("nombre").value;
+    let apellidosReg=document.getElementById("apellido").value;
+    localStorage.setItem('username',usernameReg);
+    localStorage.setItem('email',emailReg);
+    localStorage.setItem('password',passwordReg);
+    localStorage.setItem('nombre',nombreReg);
+    localStorage.setItem('apellido',apellidosReg);
+    window.location.href="suscripcion.html"
+}
+
 
