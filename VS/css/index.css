@@ -340,12 +340,12 @@ h1{
     height: 40px;
     border: none;
     padding: 0px 20px;
-    background-color: #4CAF50;
+    background-color: #0099ff;
     color: white;
     font-weight: 500;
     cursor: pointer;
     border-radius: 10px;
-    box-shadow: 5px 5px 0px #218838;
+    box-shadow: 5px 5px 0px  #012a46;
     transition-duration: .3s;
   }
   
@@ -789,3 +789,15 @@ h1{
     border: 1px solid #dd2626;
 
   }
+  /* //////////////////////////////////////////////////// */
+  footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+textarea{
+  width: 450px;
+  height: 150px;
+}

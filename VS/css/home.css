@@ -151,6 +151,9 @@ footer{
     text-align: center;
     font-size: 20px;
 }
+.navbar{
+    height: 70px;
+}
 
 #oferta a{
     margin: 0 auto;

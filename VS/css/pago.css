@@ -41,6 +41,13 @@ body {
     outline: none;
     cursor: pointer;
   }
+  footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
   
   .payment--options button svg {
     height: 20px;

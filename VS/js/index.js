@@ -111,6 +111,7 @@ function cargarPeliculas() {
             });
         });
     } else if (idPerfil === "2") {
+        
         let user = sessionStorage.getItem("username");
         fetch(`http://localhost:8084/pelicula/todasPorUser/${user}`)
             .then(res => res.json())

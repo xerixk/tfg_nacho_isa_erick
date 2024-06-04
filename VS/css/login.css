@@ -22,6 +22,14 @@ h1 {
 h2 {
 	text-align: center;
 }
+footer {
+	margin-top: 50px;
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
 
 p {
 	font-size: 14px;
