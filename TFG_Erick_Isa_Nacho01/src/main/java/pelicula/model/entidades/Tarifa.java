@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import pelicula.model.dto.UserDto;
 
 @Entity
 @Table(name = "tarifas")
@@ -115,6 +116,9 @@ public class Tarifa implements Serializable{
 		return "Tarifa [idTarifa=" + idTarifa + ", nombre=" + nombre + ", precio=" + precio + ", descripcion="
 				+ descripcion + "]";
 	}
+
+
+	
 
 	
 }

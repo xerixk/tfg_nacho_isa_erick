@@ -221,3 +221,24 @@ button {
         bottom: -10px;
     }
 }
+.volver{
+	margin-top: 30px;
+}
+.volverText{
+color: #DDDDDD;
+font-size: 20px;
+
+}
+.bot2{
+    display: none;
+}
+.deshabilitado {
+    background-color: #e0e0e0;
+    opacity: 0.6; 
+    border-radius: 30px;
+    cursor: default;
+}
+button[disabled] {
+    cursor: not-allowed;
+    background-color: #b0b0b0; 
+}

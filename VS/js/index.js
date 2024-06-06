@@ -145,19 +145,24 @@ function verDescPeli(id) {
     contenedorCat.innerHTML = "";
     contbsuqda.innerHTML = "";
     verpelicula.innerHTML = "";
-    verpelicula.style.display = "flex";
+    verpelicula.style.display = "block";
 
     fetch(verdescrip + id)
         .then(res => res.json())
         .then(pelicula => {
             let contene = document.createElement("div");
+            let conteneImagen = document.createElement("div");
+            let conteneDesc = document.createElement("div");
             let imagen = document.createElement("img");
             let nombre = document.createElement("p");
             let descripcion = document.createElement("p");
             let reparto = document.createElement("p");
             let guardar = document.createElement("i");
-
+            conteneImagen.id="conteneImagen";
+            conteneDesc.id="conteneDesc";
             contene.id = "verPeli";
+
+
             imagen.src = 'img/' + pelicula.imagen;
             nombre.innerHTML = `${pelicula.nombre}`;
             descripcion.innerHTML = `${pelicula.descripcion}`;
@@ -174,23 +179,25 @@ function verDescPeli(id) {
                 guardar.innerHTML = `<i id="guardar" class="fa-regular fa-bookmark" onmouseover="blanco(this)" onmouseout="vacio(this)" data-id="${pelicula.idPelicula}" onclick="guardarPeli(${pelicula.idPelicula})"></i>`;
             });
 
-            contene.appendChild(imagen);
-            contene.appendChild(nombre);
-            contene.appendChild(descripcion);
-            contene.appendChild(reparto);
+            conteneImagen.appendChild(imagen);
+            conteneImagen.appendChild(nombre);
+            conteneDesc.appendChild(descripcion);
+            conteneDesc.appendChild(reparto);
+            contene.appendChild(conteneImagen)
+            contene.appendChild(conteneDesc)
 
             let contVideo = document.createElement("div");
             let video = document.createElement("video");
             contVideo.id = "idVideo";
-            video.src = "videos/videoPrueba.mp4";
+            video.src = "videos/"+pelicula.video;
             video.controls = true;
             video.width = 500;
             video.height = 300;
             contVideo.appendChild(video);
 
-            verpelicula.appendChild(contene);
+            contVideo.appendChild(guardar);
             verpelicula.appendChild(contVideo);
-            verpelicula.appendChild(guardar);
+            verpelicula.appendChild(contene);
         });
 }
 
@@ -226,6 +233,8 @@ let contPeliculas=document.getElementById("contenedorPelis");
 let tablaPeliculas = document.getElementById("tablaPeliculas");
 let tablaCategorias = document.getElementById("tablaCategorias");
 function esquema() {
+
+    document.getElementById("pelicula").style.display = "none";
     document.getElementById("form_addMovie").style.display = "none";
     let esquema= document.getElementById("esquema");
     let vPrevia= document.getElementById("vPrevia");
@@ -1068,3 +1077,9 @@ function aceptarModPelicula(idPelic) {
         });
    
 }
+function cerrarSesion() {
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("idTarifa");
+    window.location.href = "home.html";
+
+ }

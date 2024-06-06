@@ -95,6 +95,4 @@ public class PeliculaDaoImplMy8 implements PeliculaDao{
         }
     }
 
-	
-
 }

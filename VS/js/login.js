@@ -4,28 +4,28 @@ let urlregistro = "http://localhost:8084/usuario/registro";
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
-     const registro = urlParams.get('registro');
+    const registro = urlParams.get('registro');
     const signInButton = document.getElementById("signIn");
     const signUpButton = document.getElementById("signUp");
     const signInContainer = document.querySelector(".sign-in-container");
     const signUpContainer = document.querySelector(".sign-up-container");
     const container = document.getElementById("container");
 
-    if(registro=== "true"){
+    if (registro === "true") {
         signUpContainer.style.display = "block";
-            signInContainer.style.display = "none";
-            container.classList.add("right-panel-active");
+        signInContainer.style.display = "none";
+        container.classList.add("right-panel-active");
     }
 
-    signInButton.addEventListener("click", function() {
+    signInButton.addEventListener("click", function () {
         signInContainer.style.display = "block";
         signUpContainer.style.display = "none";
         container.classList.remove("right-panel-active");
     });
 
-    signUpButton.addEventListener("click", function() {
+    signUpButton.addEventListener("click", function () {
         signInContainer.style.display = "none";
         signUpContainer.style.display = "block";
         container.classList.add("right-panel-active");
@@ -54,37 +54,27 @@ function inicioSesion() {
         },
         body: JSON.stringify(datosInicioSesion)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud de inicio de sesión.');
-        }
-        return response.json();
-    })
-    .then(usuario => {
-       
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud de inicio de sesión.');
+            }
+            return response.json();
+        })
+        .then(usuario => {
             sessionStorage.setItem("username", usuario.username);
             sessionStorage.setItem("idPerfil", usuario.idPerfil);
-            window.location.href = "index.html";    
-       
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            if (usuario.idTarifa != null) {
+                sessionStorage.setItem("idTarifa", usuario.idTarifa);
+            } else {
+                sessionStorage.removeItem('idTarifa');
+            }
+            window.location.href = "index.html";
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
-function verSuscripcion() {
-    
-    let usernameReg=document.getElementById("username").value;
-    let emailReg =document.getElementById("email").value;
-    let passwordReg=document.getElementById("password").value;
-    let nombreReg=document.getElementById("nombre").value;
-    let apellidosReg=document.getElementById("apellido").value;
-    localStorage.setItem('username',usernameReg);
-    localStorage.setItem('email',emailReg);
-    localStorage.setItem('password',passwordReg);
-    localStorage.setItem('nombre',nombreReg);
-    localStorage.setItem('apellido',apellidosReg);
-    window.location.href="suscripcion.html"
-}
+
 
 

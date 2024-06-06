@@ -145,21 +145,25 @@ footer{
 }
 
 #verPeli{
-    width: 70%;
+    width: 90%;
     height: auto;
-    padding: 20px;
+    margin-top: 50px;
+    display: flex;
    
 }
 
-#verPeli p{
-    margin: 10px;
+ #verPeli p{
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 16px;
     
 }
 
 #verPeli img{
     width: 200px;
     height: 250px;
-}
+} 
+
 
 h1{
     width: 100px;
@@ -217,7 +221,19 @@ h1{
 }
 
 
-
+#guardar{
+  position: absolute;
+  
+  right: 110px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+#idVideo{
+  position: relative;
+  width: 900px;
+  margin: 0 auto;
+}
 
 .edit-button,
 .delete-button {
@@ -801,3 +817,54 @@ textarea{
   width: 450px;
   height: 150px;
 }
+.ContCT{
+  position: absolute;
+  width: 300px;
+  left: 200px;  
+}
+.golden-button {
+  touch-action: manipulation;
+  display: inline-block;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0.3em;
+  height: 2.75em;
+  line-height: 2.5em;
+  text-transform: uppercase;
+  padding: 0 1em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px rgb(21, 8, 139),
+    inset 0 -1px 1px 3px rgb(164, 133, 250);
+  background-image: linear-gradient(
+    160deg,
+    #07a58b,
+    #1661a7,
+    #2e9aff,
+    #123092,
+    #640092
+  );
+  border: 1px solid #2907a5;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 2px 2px rgb(133, 164, 250);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.golden-button:focus,
+.golden-button:hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23),
+    inset 0 -2px 5px 1px #103bb1, inset 0 -1px 1px 3px rgb(133, 135, 250);
+  border: 1px solid rgba(41, 7, 165, 0.6);
+  color: rgba(5, 7, 120, 0.8);
+}
+
+/* .golden-button:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+} */

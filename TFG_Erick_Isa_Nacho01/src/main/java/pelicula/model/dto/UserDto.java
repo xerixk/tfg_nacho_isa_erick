@@ -4,7 +4,7 @@ package pelicula.model.dto;
 public class UserDto {
 	private String username;
 	private int idPerfil;
-	private int idTarifa;
+	private Integer idTarifa;
 	public String getUsername() {
 		return username;
 	}
@@ -17,10 +17,10 @@ public class UserDto {
 	public void setIdPerfil(int idPerfil) {
 		this.idPerfil = idPerfil;
 	}
-	public int getIdTarifa() {
+	public Integer  getIdTarifa() {
 		return idTarifa;
 	}
-	public void setIdTarifa(int idTarifa) {
+	public void setIdTarifa(Integer  idTarifa) {
 		this.idTarifa = idTarifa;
 	}
 	

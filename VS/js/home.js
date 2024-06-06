@@ -66,14 +66,9 @@ function foferta(){
     window.location = "suscripcion.html";
 }
 
-function cerrarSesion() {
-    sessionStorage.removeItem("username");
-    window.location.href = "home.html";
 
- }
 
  
-//  las preguntas
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

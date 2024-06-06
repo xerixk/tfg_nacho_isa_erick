@@ -198,3 +198,13 @@ body {
     
     width: 50%;
   }
+  .volverText{
+    color: #000000;
+    font-size: 15px;
+    
+    }
+    .volver{
+      margin-top: 10px;
+      text-align: center;
+      margin-bottom: 10px;
+    }

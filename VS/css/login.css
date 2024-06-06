@@ -222,4 +222,12 @@ input {
 	height: 40px;
 	width: 40px;
 }
+.volver{
+	margin-top: 30px;
+}
+.volverText{
+color: #DDDDDD;
+font-size: 20px;
+
+}
 
