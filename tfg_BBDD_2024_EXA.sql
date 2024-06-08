@@ -70,8 +70,8 @@ CREATE TABLE `UsuarioPerfil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `UsuarioPerfil` (`username`, `id_perfil`) VALUES
-('Xerixk', 2),
 ('cliente', 2),
+('cliente1', 2),
 ('cliente2', 2),
 ('admin', 1);
 
@@ -136,8 +136,8 @@ CREATE TABLE `Guardar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 insert into `Guardar`(id_guardar,id_pelicula,username)values
-(1,1,'Xerixk'),
-(2,2,'cliente'),
+(1,1,'cliente'),
+(2,2,'cliente1'),
 (3,3,'cliente2');
 
 
@@ -157,8 +157,8 @@ CREATE TABLE DatosBancarios (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO DatosBancarios (username, nombre_titular, numero_tarjeta, fecha_expiracion, cvv)VALUES
-('Xerixk', 'Erick Suarez Tulmo', '1234 5678 9012 3456', STR_TO_DATE('12/25', '%m/%y'), '123'),
-('cliente', 'Cliente Apellido', '9876 5432 1098 7654', STR_TO_DATE( '06/24','%m/%y'), '456'),
+('cliente', 'Cliente1 Apellido', '1234 5678 9012 3456', STR_TO_DATE('12/25', '%m/%y'), '123'),
+('cliente1', 'Cliente1 Apellido', '9876 5432 1098 7654', STR_TO_DATE( '06/24','%m/%y'), '456'),
 ('cliente2', 'Cliente2 Apellido', '5555 6666 7777  8888',STR_TO_DATE('09/23','%m/%y'), '789');
 
 create user if not exists uvacantes_2024 identified by 'uvacantes';

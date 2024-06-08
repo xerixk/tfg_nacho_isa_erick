@@ -255,8 +255,8 @@ function esquema() {
                     <tr >
                         <td scope="col" colspan="8">
                             <button type="button" class="buttonAdd" onclick="fañadirpeliEsq()" id="añadirPeliTable">
-                            <span class="button__text" onclick="feañadirCat()">Añadir Pelicula</span>
-                            <span class="button__icon" onclick="feañadirCat()"><svg onclick="feañadirCat()" class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                            <span class="button__text" onclick="fañadirpeliEsq()">Añadir Pelicula</span>
+                            <span class="button__icon" onclick="fañadirpeliEsq()"><svg onclick="feañadirCat()" class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
                             </button> 
                         </td>
                         
@@ -1081,5 +1081,8 @@ function cerrarSesion() {
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("idTarifa");
     window.location.href = "home.html";
+}
+function mejorarTarifa() {
+    window.location.href = "cambioTarifa.html";
+}
 
- }

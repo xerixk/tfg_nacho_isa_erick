@@ -75,6 +75,21 @@ function inicioSesion() {
         });
 }
 
-
+function verSuscripcion() {
+    
+    let usernameReg = document.getElementById("username").value;
+    let emailReg = document.getElementById("email").value;
+    let passwordReg = document.getElementById("password").value;
+    let nombreReg = document.getElementById("nombre").value;
+    let apellidosReg = document.getElementById("apellido").value;
+    localStorage.setItem('username', usernameReg);
+    localStorage.setItem('email', emailReg);
+    localStorage.setItem('password', passwordReg);
+    localStorage.setItem('nombre', nombreReg);
+    localStorage.setItem('apellido', apellidosReg);
+    
+    window.location.href = "suscripcion.html"
+   
+}
 
 
